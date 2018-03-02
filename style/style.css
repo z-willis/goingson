@@ -1,4 +1,4 @@
-.nav-bar {
+.top-nav-bar {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -6,7 +6,7 @@
     background-color: red;
 }
 
-.tab-right {
+.top-nav-bar .tab-right {
     float: right;
     display: inline-block;
     color: white;
@@ -15,7 +15,7 @@
     text-decoration: none;
 }
 
-.tab-left {
+.top-nav-bar .tab-left {
     float: left;
     display: inline-block;
     color: white;
@@ -66,4 +66,27 @@
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+}
+
+.events {
+    list-style-type: none;
+}
+
+.events .img {
+    float: left;
+    margin: 0 15px 0 0;
+}
+
+.events .text {
+    font: 200 12px/1.5 Georgia, Times New Roman, serif;
+}
+
+.events .entry {
+    padding: 10px;
+    overflow: auto;
+}
+
+.events .entry:hover {
+    background: #eee;
+    cursor: pointer;
 }

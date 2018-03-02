@@ -10,7 +10,7 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     </head>
     <body>
-        <ul class="nav-bar">
+        <ul class="top-nav-bar">
             <li class="tab-left">
                 <span onclick="openNav()"><a><image src="images/drawer.png"></image></a></span>
             </li>
@@ -34,8 +34,34 @@
             <a href="#">Contact</a>
         </div>
 
-        <div id="dialog" title="Basic dialog">
-            <p>This is an animated dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+        <div id="dialog" title="Events">
+            <ul class="events">
+                <li class="entry">
+                    <img class="img" src="images/drawer.png" />
+                    <h3 class="title">Event 1</h3>
+                    <p class="text">The HTML on this one is a little more complicated. Each list item needs to have three children: an image, a headline and a paragraph. The images that I’m using are 100px by 100px so keep that in mind if you want to customize this to be a different size. Overall, this is all still really simple markup that shouldn’t trip you up in the least.</p>
+                </li>
+                <li class="entry">
+                    <img class="img" src="images/drawer.png" />
+                    <h3 class="title">Event 2</h3>
+                    <p class="text">The HTML on this one is a little more complicated. Each list item needs to have three children: an image, a headline and a paragraph. The images that I’m using are 100px by 100px so keep that in mind if you want to customize this to be a different size. Overall, this is all still really simple markup that shouldn’t trip you up in the least.</p>
+                </li>
+                <li class="entry">
+                    <img class="img" src="images/drawer.png" />
+                    <h3 class="title">Event 3</h3>
+                    <p class="text">The HTML on this one is a little more complicated. Each list item needs to have three children: an image, a headline and a paragraph. The images that I’m using are 100px by 100px so keep that in mind if you want to customize this to be a different size. Overall, this is all still really simple markup that shouldn’t trip you up in the least.</p>
+                </li>
+                <li class="entry">
+                    <img class="img" src="images/drawer.png" />
+                    <h3 class="title">Event 4</h3>
+                    <p class="text">The HTML on this one is a little more complicated. Each list item needs to have three children: an image, a headline and a paragraph. The images that I’m using are 100px by 100px so keep that in mind if you want to customize this to be a different size. Overall, this is all still really simple markup that shouldn’t trip you up in the least.</p>
+                </li>
+                <li class="entry">
+                    <img class="img" src="images/drawer.png" />
+                    <h3 class="title">Event 5</h3>
+                    <p class="text">The HTML on this one is a little more complicated. Each list item needs to have three children: an image, a headline and a paragraph. The images that I’m using are 100px by 100px so keep that in mind if you want to customize this to be a different size. Overall, this is all still really simple markup that shouldn’t trip you up in the least.</p>
+                </li>
+            </ul>
         </div>
         <script>
             /* Set the width of the side navigation to 250px */
@@ -51,14 +77,10 @@
             $( function() {
                 $( "#dialog" ).dialog({
                     autoOpen: false,
-                    show: {
-                        effect: "blind",
-                        duration: 1000
-                    },
-                    hide: {
-                        effect: "explode",
-                        duration: 1000
-                    }
+                    show: false,
+                    hide: false,
+                    height: 600,
+                    width: 600
                 });
 
                 $( "#opener" ).on( "click", function() {
