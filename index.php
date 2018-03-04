@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
     <head>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link type='text/css' rel='stylesheet' href='style/style.css'/>
@@ -8,22 +8,33 @@
 
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="node_modules/angular/angular.js"></script>
+        <script src="js/app.js"></script>
     </head>
-    <body>
-        <ul class="top-nav-bar">
+    <body ng-controller="baseCtrl">
+        <ul class="top-nav-bar" ng-if="!user">
             <li class="tab-left">
                 <span onclick="openNav()"><a><image src="images/drawer.png"></image></a></span>
             </li>
             <li class="tab-right">
                 <input type="submit"/>
+                <input type="button" value="Create Account" ng-click="createAccount(username)">
             </li>
             <li class="tab-right">
                 <div>Password:</div>
-                <input placeholder="********"/>
+                <input ng-model="password" placeholder="********"/>
             </li>
             <li class="tab-right">
                 <div>Username:</div>
-                <input placeholder="JBob123"/>
+                <input ng-model="username" placeholder="JBob123"/>
+            </li>
+        </ul>
+        <ul class="top-nav-bar" ng-if="user">
+            <li class="tab-left">
+                <span onclick="openNav()"><a><image src="images/drawer.png"></image></a></span>
+            </li>
+            <li class="tab-right">
+                <div>{{user.name}}</div>
             </li>
         </ul>
         <div id="mySidenav" class="sidenav">
@@ -34,32 +45,13 @@
             <a href="#">Contact</a>
         </div>
 
+        <div>{{test}}</div>
         <div id="dialog" title="Events">
             <ul class="events">
-                <li class="entry">
+                <li class="entry" ng-repeat="event in events">
                     <img class="img" src="images/drawer.png" />
-                    <h3 class="title">Event 1</h3>
-                    <p class="text">The HTML on this one is a little more complicated. Each list item needs to have three children: an image, a headline and a paragraph. The images that I’m using are 100px by 100px so keep that in mind if you want to customize this to be a different size. Overall, this is all still really simple markup that shouldn’t trip you up in the least.</p>
-                </li>
-                <li class="entry">
-                    <img class="img" src="images/drawer.png" />
-                    <h3 class="title">Event 2</h3>
-                    <p class="text">The HTML on this one is a little more complicated. Each list item needs to have three children: an image, a headline and a paragraph. The images that I’m using are 100px by 100px so keep that in mind if you want to customize this to be a different size. Overall, this is all still really simple markup that shouldn’t trip you up in the least.</p>
-                </li>
-                <li class="entry">
-                    <img class="img" src="images/drawer.png" />
-                    <h3 class="title">Event 3</h3>
-                    <p class="text">The HTML on this one is a little more complicated. Each list item needs to have three children: an image, a headline and a paragraph. The images that I’m using are 100px by 100px so keep that in mind if you want to customize this to be a different size. Overall, this is all still really simple markup that shouldn’t trip you up in the least.</p>
-                </li>
-                <li class="entry">
-                    <img class="img" src="images/drawer.png" />
-                    <h3 class="title">Event 4</h3>
-                    <p class="text">The HTML on this one is a little more complicated. Each list item needs to have three children: an image, a headline and a paragraph. The images that I’m using are 100px by 100px so keep that in mind if you want to customize this to be a different size. Overall, this is all still really simple markup that shouldn’t trip you up in the least.</p>
-                </li>
-                <li class="entry">
-                    <img class="img" src="images/drawer.png" />
-                    <h3 class="title">Event 5</h3>
-                    <p class="text">The HTML on this one is a little more complicated. Each list item needs to have three children: an image, a headline and a paragraph. The images that I’m using are 100px by 100px so keep that in mind if you want to customize this to be a different size. Overall, this is all still really simple markup that shouldn’t trip you up in the least.</p>
+                    <h3 class="title">{{event.title}}</h3>
+                    <p class="text">{{event.description}}</p>
                 </li>
             </ul>
         </div>
