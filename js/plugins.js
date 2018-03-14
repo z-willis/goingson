@@ -6,7 +6,8 @@ function initMap() {
     // Default location of the map if the user doens't allow the geolocation service
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 31.801890, lng: -85.957228},
-        zoom: 16
+        zoom: 16,
+        disableDoubleClickZoom: false
     });
 
     infoWindow = new google.maps.InfoWindow;
@@ -22,6 +23,7 @@ function initMap() {
             marker = new google.maps.Marker({
                 position: pos,
                 map: map,
+                title: 'Hello World!'
             })            
         }, function () {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -30,6 +32,10 @@ function initMap() {
       // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
     }
+
+    map.addListener('dblclick', function (e) {
+        addMarker(e.latLng);
+    });
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -42,13 +48,14 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 // Add a marker to the map
-function addMarker(latitude, longitude){
+function addMarker(pos){
     'use strict';
-    var pos = {lat: latitude, lng: longitude};
     map.setCenter(pos);
     marker = new google.maps.Marker({
         position: pos,
         map: map
-    })
+    });
+    marker.addListener('click', function() {
+        $( "#eventDialog" ).dialog( "open" );
+    });
 }
-

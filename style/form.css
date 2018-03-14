@@ -1,0 +1,99 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #303952;
+    font-family: Arial, Tahoma;
+    font-weight: bold;
+}
+
+/* Login and create account used to change the forms */
+.main > p{
+    text-align: center;
+    font-size: 52px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 0;
+    padding: 40px;
+}
+
+.main p .login{
+    color: #3498db;
+}
+
+.main p .create-account{
+    color: #27ae60;
+}
+
+/* Center the forms horizontally and vertically */
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Styling for the all the input fields inside the form */
+.login-form > input,
+.create-account-form div > input{
+    display: block;
+    margin-bottom: 20px;
+    padding: 16px;
+    border: none;    
+    width: 341px;
+}
+
+/* Styling for the submit button inside the form */
+.login-form input[type=submit],
+.create-account-form input[type=submit]{
+    color: #3c6382;
+    font-weight: bold;
+    width: 341px;
+    height: 50px;
+    border: none;
+}
+
+.create-account-form{
+    display: none;
+}
+
+/* Styling for the error paragraphs the show when the user submit erroneous information */
+.login-form > p,
+.create-account-form > p{
+    background-color: white;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    border-left: 4px solid red;
+}
+
+/* Messages that appear to user on the spot while creating the account */
+.availability,
+p.temporary{
+    opacity: 0;
+    background-color: #a29bfe;
+    width: 410px;
+    border: none;
+}
+
+.create-account-form .user-input,
+.create-account-form .user-pass,
+.create-account-form .rep-pass,
+.create-account-form .user-email{
+    position: relative;
+}
+
+/* Place the temporary messages beside their respective fields and center the message text horizontally and vertically */
+.create-account-form .user-input p,
+.create-account-form .user-pass p,
+.create-account-form .rep-pass p,
+.create-account-form .user-email p{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -16px;
+    left: 341px;
+}
+

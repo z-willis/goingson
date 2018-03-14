@@ -8,33 +8,14 @@
 
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzMHc5MQBw4UrHMCKTCVmwSngKzo1Kh6I"></script>
         <script src="node_modules/angular/angular.js"></script>
         <script src="js/app.js"></script>
     </head>
     <body ng-controller="baseCtrl">
-        <ul class="top-nav-bar" ng-if="!user">
+        <ul class="top-nav-bar" ng>
             <li class="tab-left">
                 <span onclick="openNav()"><a><image src="images/drawer.png"></image></a></span>
-            </li>
-            <li class="tab-right">
-                <input type="submit"/>
-                <input type="button" value="Create Account" ng-click="createAccount(username)">
-            </li>
-            <li class="tab-right">
-                <div>Password:</div>
-                <input ng-model="password" placeholder="********"/>
-            </li>
-            <li class="tab-right">
-                <div>Username:</div>
-                <input ng-model="username" placeholder="JBob123"/>
-            </li>
-        </ul>
-        <ul class="top-nav-bar" ng-if="user">
-            <li class="tab-left">
-                <span onclick="openNav()"><a><image src="images/drawer.png"></image></a></span>
-            </li>
-            <li class="tab-right">
-                <div>{{user.name}}</div>
             </li>
         </ul>
         <div id="mySidenav" class="sidenav">
@@ -45,8 +26,9 @@
             <a href="#">Contact</a>
         </div>
 
-        <div>{{test}}</div>
-        <div id="dialog" title="Events">
+        <div id="map"></div>
+
+        <div id="eventsDialog" title="Events">
             <ul class="events">
                 <li class="entry" ng-repeat="event in events">
                     <img class="img" src="images/drawer.png" />
@@ -54,6 +36,24 @@
                     <p class="text">{{event.description}}</p>
                 </li>
             </ul>
+        </div>
+        <div id="eventDialog" title="Event">
+            <ul class="events">
+                <li class="entry" ng-repeat="event in events">
+                    <img class="img" src="images/drawer.png" />
+                    <h3 class="title">{{event.title}}</h3>
+                    <p class="text">{{event.description}}</p>
+                </li>
+            </ul>
+        </div>
+        <div id="createEventDialog" title="Create Event">
+            <form>
+                <h3>Title</h3>
+                <input ng-model="title"/>
+                <h3>Description</h3>
+                <input ng-model="desc"/>
+                <input style="display: block;" ng-click="createEvent(title, desc)" type="submit"/>
+            </form>
         </div>
         <script>
             /* Set the width of the side navigation to 250px */
@@ -67,16 +67,30 @@
             }
 
             $( function() {
-                $( "#dialog" ).dialog({
+                $( "#eventsDialog" ).dialog({
                     autoOpen: false,
                     show: false,
                     hide: false,
                     height: 600,
                     width: 600
                 });
+                $( "#eventDialog" ).dialog({
+                    autoOpen: false,
+                    show: false,
+                    hide: false,
+                    height: 600,
+                    width: 600
+                });
+                $( "#createEventDialog" ).dialog({
+                    autoOpen: false,
+                    show: false,
+                    hide: false,
+                    height: 300,
+                    width: 300
+                });
 
                 $( "#opener" ).on( "click", function() {
-                    $( "#dialog" ).dialog( "open" );
+                    $( "#eventsDialog" ).dialog( "open" );
                 });
             } );
         </script>
