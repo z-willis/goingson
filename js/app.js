@@ -12,6 +12,7 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
                 angular.forEach($scope.events, function (event) {
                     $scope.addMarker(event);
                 });
+                $scope.$apply();
             }
         });
     };
@@ -80,7 +81,8 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
             type: "POST",
             success:function(data){
                 $( "#createEventDialog" ).dialog( "close" );
-                $scope.addMarker(title, new google.maps.LatLng($scope.newEventLat, $scope.newEventLong));
+                // $scope.addMarker(title, new google.maps.LatLng($scope.newEventLat, $scope.newEventLong));
+                $scope.populateMarkers();
             }
         });
     };
@@ -95,6 +97,7 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
             success:function(data){
                 $scope.displayedEvent = JSON.parse(data);
                 console.log("Loaded event " + $scope.displayedEvent.id);
+                $scope.$apply();
             }
         });
     };

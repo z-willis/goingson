@@ -47,10 +47,10 @@
         <div id="createEventDialog" title="Create Event">
             <form>
                 <h3>Title</h3>
-                <input ng-model="title"/>
+                <input ng-model="newEventTitle"/>
                 <h3>Description</h3>
-                <input ng-model="desc"/>
-                <input style="display: block;" ng-click="createEvent(title, desc)" type="submit"/>
+                <input ng-model="newEventDesc"/>
+                <input style="display: block;" ng-click="createEvent(newEventTitle, newEventDesc)" type="submit"/>
             </form>
         </div>
         <script>
