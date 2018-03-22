@@ -60,6 +60,7 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
         var marker = new google.maps.Marker({
             position: pos,
             map: map,
+            icon: "images/marker.png",
             title: event.title,
             eventId: event.id
         });
