@@ -1,12 +1,12 @@
-.nav-bar {
+.top-nav-bar {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: red;
+    background-color: #424242;
 }
 
-.tab-right {
+.top-nav-bar .tab-right {
     float: right;
     display: inline-block;
     color: white;
@@ -15,7 +15,7 @@
     text-decoration: none;
 }
 
-.tab-left {
+.top-nav-bar .tab-left {
     float: left;
     display: inline-block;
     color: white;
@@ -32,7 +32,7 @@
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: red; /* Black*/
+    background-color: #424242;
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
@@ -66,6 +66,29 @@
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+}
+
+.events {
+    list-style-type: none;
+}
+
+.events .img {
+    float: left;
+    margin: 0 15px 0 0;
+}
+
+.events .text {
+    font: 200 12px/1.5 Georgia, Times New Roman, serif;
+}
+
+.events .entry {
+    padding: 10px;
+    overflow: auto;
+}
+
+.events .entry:hover {
+    background: #eee;
+    cursor: pointer;
 }
 
 /* Map styling */
