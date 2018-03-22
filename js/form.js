@@ -5,6 +5,8 @@ var passLength = 5,
     loginPass = $(".login-form input[name=password]"),
     loginSubmit = $(".login-form input[type=submit]"),
     loginList = $(".login-form input[name=username], .login-form input[name=password]"),
+    loginErrors = $(".login-form > p.errors"),
+    createAccountSuccess = $(".login-form > p.success"),
     createAccountForm = $(".create-account-form"),
     createAccountUser = $(".create-account-form .user-input input[name=username]"),
     createAccountPass = $(".create-account-form .user-pass input[name=password]"),
@@ -133,7 +135,17 @@ $(document).ready(function(){
     if(errors.length != 0){
         createAccountForm.siblings().css("display", "none");
         createAccountForm.fadeIn(1000);
-    }   
+    }
+    
+    // Show a error message to the user if something is wrong with the login
+    if(!loginErrors.text() == ""){
+        loginErrors.css("display", "block").fadeOut(2500);
+    }
+    
+    // Show a success message to the user a successfully creating an account
+    if(!createAccountSuccess.text() == ""){
+        createAccountSuccess.css("display", "block").fadeOut(2500);
+    }
     
 });
 
