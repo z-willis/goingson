@@ -1,10 +1,18 @@
 <?php
+
+    session_start();    // Start the session
+
+    // If a user has already logged in redirect him to the map without having to log in again
+    /*if(isset($_SESSION['user'])){
+        header('Location: map.php');
+    }*/
+
     include 'connect.php';
 
     $userLength = 5;                // the minimum length of the username
     $passLength = 5;                // the minimum length of the password
     // varaibles for the username, password, hashing the password, email, and checking the user's account 
-    $user = $pass = $hashedPass = $email = $existingAccount = '';
+    $user = $pass = $hashedPass = $email = $existingAccount = $success = '';
     $createAccountErrors = array();         // an array to store the errors while creating an account
     $loginErrors = array();                 // an array to store the errors while logging in
 
@@ -37,6 +45,8 @@
                 $count = $stmt->rowCount();
 
                 if($count > 0){ // if a user exists
+                    // Initialize the session of the user
+                    $_SESSION['user'] = $user;      
                     header('Location: map.php');
                 } else{
                     $loginErrors[] = 'No such account exists';
@@ -46,7 +56,7 @@
 
             //When the user clicks on the create account button
             case 'Create Account':{
-                
+                            
                 if(isset($_POST['username'])){
                     // Filter the username string from unnecessary characters to prevent the user from causing security issues
                     filter_var($_POST['username'], FILTER_SANITIZE_STRING);
@@ -56,7 +66,7 @@
                         $createAccountErrors[] = "Username has to be more than 4 characters.";
                     }else{
                         $user = $_POST['username'];
-                    }
+                    } 
                 }
                 
                 if(isset($_POST['password']) && isset($_POST['repeat-password'])){
@@ -76,7 +86,7 @@
                         }else{
                             $createAccountErrors[] = "Passwords don't match";
                         }
-                    }
+                    } 
                 }
                 
                 if(isset($_POST['email'])){
@@ -84,7 +94,7 @@
                     // Filter the email string from unnecessary characters to prevent the user from causing security issues
                     filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
                     $email = $_POST['email'];
-
+                    
                 }
                 
                 if(count($createAccountErrors) == 0){ // if there are no errors that took place while the user is creating the account
@@ -96,7 +106,6 @@
                     if($count > 0){ // if the username is already used
                         $createAccountErrors[] = "Username already used";
                     }else{
-                        
                         // Enter the user's information into the database
                         $stmt = $con->prepare('INSERT INTO user (username, password, email) VALUES (:username, :password, :email)');
                         $stmt->execute(array(
@@ -104,7 +113,7 @@
                             ":password" => $hashedPass,
                             ":email"	=> $email
                         ));
-                        header("Location: login.php");
+                        $success = "Account created successfully";
                     }
                 }
             }
@@ -129,16 +138,18 @@
                 <span class="create-account">Sign Up</span>
             </p>
             <section class="container">
+                
+                <!-- Start login form -->
                 <form class="login-form"  method="POST" action="<?php echo $_SERVER["PHP_SELF"];?>" > 
                     <input type="text" name="username" placeholder="Username" autocomplete="off">
                     <input type="password" name="password" placeholder="Password" autocomplete="new-password">
                     <input type="submit" value="Login" name="account" disabled>
-                    <?php 
-                        foreach($loginErrors as $error){
-                            echo "<p>" . $error . "</p>";
-                        }
-                    ?>
+                    <p class="errors"><?php foreach($loginErrors as $error){echo $error;}?></p>
+                    <p class="success"><?php if(strlen($success) != 0){echo $success;}?></p>
                 </form>
+                <!-- End login form -->
+                
+                <!-- Start create account form -->
                 <form class="create-account-form " method="POST" action="<?php echo $_SERVER["PHP_SELF"];?>">
                     <div class="user-input">
                         <input type="text" name="username" placeholder="Username" autocomplete="off">
@@ -154,7 +165,7 @@
                         <p class="temporary"></p>
                     </div>
                     <div class="user-email">
-                        <input type="text" name="email" placeholder="Email">
+                        <input type="text" name="email" placeholder="Email" autocomplete="off">
                         <p class="temporary">Please enter a valid email</p>
                     </div>
                     <input type="submit" value="Create Account" name="account" disabled>
@@ -164,6 +175,7 @@
                         }
                     ?>
                 </form>
+                <!-- End create account form -->
             </section>
         </section>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
