@@ -57,10 +57,14 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
     // Add a marker to the map
     $scope.addMarker = function(event){
         var pos = new google.maps.LatLng(event.latitude, event.longitude);
+        var icon = {
+            url: "images/marker.png"
+            //scaledSize: new google.maps.Size(50, 50)
+        };
         var marker = new google.maps.Marker({
             position: pos,
             map: map,
-            icon: "images/marker.png",
+            icon: icon,
             title: event.title,
             eventId: event.id
         });
