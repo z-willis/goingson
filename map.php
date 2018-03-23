@@ -3,7 +3,7 @@
 
     // Don't allow the user to access the map without logging in first
     if(!isset($_SESSION['user'])){
-        header('Location: login.php');
+        header('Location: index.php');
     }
 
 ?>
