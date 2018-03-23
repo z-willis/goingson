@@ -58,13 +58,24 @@ body{
 }
 
 /* Styling for the error paragraphs the show when the user submit erroneous information */
-.login-form > p,
+.login-form > p.errors,
+.login-form > p.success,
 .create-account-form > p{
     background-color: white;
     text-align: center;
     height: 50px;
     line-height: 50px;
+}
+
+.login-form > p.errors,
+.create-account-form > p{
     border-left: 4px solid red;
+    display:none;
+}
+
+.login-form > p.success{
+    border-left: 4px solid green;
+    display:none;
 }
 
 /* Messages that appear to user on the spot while creating the account */

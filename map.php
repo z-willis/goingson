@@ -1,3 +1,13 @@
+<?php
+    session_start();    // Start the session
+
+    // Don't allow the user to access the map without logging in first
+    if(!isset($_SESSION['user'])){
+        header('Location: login.php');
+    }
+
+?>
+
 <!DOCTYPE html>
 <html ng-app="myApp">
     <head>
