@@ -40,13 +40,15 @@
                 }
 
                 // checking if the information entered by the user exists in the database or not (if the user exists or not)
-                $stmt = $con->prepare('SELECT username, password FROM user WHERE username = ? AND password = ?');
+                $stmt = $con->prepare('SELECT userid, username, password, email FROM user WHERE username = ? AND password = ?');
                 $stmt->execute(array($user , $hashedPass));
                 $count = $stmt->rowCount();
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);      // get the info of the user from the database (information comes as an associative array)
 
                 if($count > 0){ // if a user exists
                     // Initialize the session of the user
-                    $_SESSION['user'] = $user;      
+                    $_SESSION['user'] = $user;
+                    $_SESSION['id'] = $row['userid'];       // store the user's id in the session
                     header('Location: map.php');
                 } else{
                     $loginErrors[] = 'No such account exists';
