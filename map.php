@@ -60,7 +60,12 @@
                 <input ng-model="newEventTitle"/>
                 <h3>Description</h3>
                 <input ng-model="newEventDesc"/>
-                <input style="display: block;" ng-click="createEvent(newEventTitle, newEventDesc)" type="submit"/>
+                <h3>Type</h3>
+                <select value="Event" ng-model="newEventType">
+                    <option value="Event">Event</option>
+                    <option value="Question">Question</option>
+                </select>
+                <input style="display: block;" ng-click="createEvent(newEventTitle, newEventDesc, newEventType)" type="submit"/>
             </form>
         </div>
         <script>

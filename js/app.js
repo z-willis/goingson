@@ -3,6 +3,7 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
     $scope.displayedEvent = null;
     var map, infoWindow;
     $scope.events = [];
+    $scope.newEventType = "Event";
 
     $scope.populateMarkers = function(){
         jQuery.ajax({
@@ -57,11 +58,17 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
 
     // Add a marker to the map
     $scope.addMarker = function(event){
+        console.log(event);
         var pos = new google.maps.LatLng(event.latitude, event.longitude);
-        var icon = {
-            url: "images/marker.png"
-            //scaledSize: new google.maps.Size(50, 50)
-        };
+        var icon;
+        if (event.type_id == 1) {
+            icon = {
+                url: "images/marker.png"
+                //scaledSize: new google.maps.Size(50, 50)
+            };
+        } else {
+            icon = null;
+        }
         var marker = new google.maps.Marker({
             position: pos,
             map: map,
@@ -75,7 +82,13 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
         });
     };
     
-    $scope.createEvent = function (title, desc) {
+    $scope.createEvent = function (title, desc, type) {
+        var typeId;
+        if (type == "Event"){
+            typeId = 1;
+        } else if (type == "Question"){
+            typeId = 2;
+        }
         jQuery.ajax({
             url: "create_event.php",
             data:{
@@ -83,10 +96,12 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
                 "description": desc,
                 "latitude": $scope.newEventLat,
                 "longitude": $scope.newEventLong,
+                "typeId": typeId,
                 "ownerId": $scope.currentUserId
             },
             type: "POST",
             success:function(data){
+                console.log(data);
                 $( "#createEventDialog" ).dialog( "close" );
                 $scope.populateMarkers();
             }
