@@ -48,7 +48,7 @@
                 if($count > 0){ // if a user exists
                     // Initialize the session of the user
                     $_SESSION['user'] = $user;
-                    $_SESSION['id'] = $row['userid'];       // store the user's id in the session
+                    $_SESSION['userid'] = $row['userid'];       // store the user's id in the session
                     header('Location: map.php');
                 } else{
                     $loginErrors[] = 'No such account exists';

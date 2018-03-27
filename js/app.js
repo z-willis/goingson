@@ -1,4 +1,5 @@
 angular.module('myApp', []).controller('baseCtrl', function($scope) {
+    $scope.currentUserId = currentUserId;
     $scope.displayedEvent = null;
     var map, infoWindow;
     $scope.events = [];
@@ -81,12 +82,12 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
                 "title": title,
                 "description": desc,
                 "latitude": $scope.newEventLat,
-                "longitude": $scope.newEventLong
+                "longitude": $scope.newEventLong,
+                "ownerId": $scope.currentUserId
             },
             type: "POST",
             success:function(data){
                 $( "#createEventDialog" ).dialog( "close" );
-                // $scope.addMarker(title, new google.maps.LatLng($scope.newEventLat, $scope.newEventLong));
                 $scope.populateMarkers();
             }
         });
@@ -101,7 +102,6 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
             },
             success:function(data){
                 $scope.displayedEvent = JSON.parse(data);
-                console.log("Loaded event " + $scope.displayedEvent.id);
                 $scope.$apply();
             }
         });
