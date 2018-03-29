@@ -47,7 +47,7 @@ Finally, create the voting table.
 ```
 CREATE TABLE voting(
 userid int,
-eventid,
+eventid int,
 primary key(userid, eventid),
 foreign key(userid) references user(userid),
 foreign key(eventid) references events(eventid)
