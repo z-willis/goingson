@@ -17,7 +17,7 @@
 
     $stmt = $con->prepare("INSERT INTO voting (userid, eventid) VALUES (:userid, :eventid)");
     $stmt->execute(array(
-        ":userid" => $_SESSION["id"],
+        ":userid" => $_SESSION["userid"],
         ":eventid" => $_GET["id"]
     ));
 

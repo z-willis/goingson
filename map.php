@@ -53,8 +53,9 @@
             <p>{{displayedEvent.title}}</p>
             <h3>Description</h3>
             <p>{{displayedEvent.description}}</p>
+            <button ng-if="canVote" ng-click="openVoteDialog(displayedEvent.eventid)">Can You Verify This Event?</button>
             <div id="votingDialog" title="Verify Event">
-                <p>Can you verify this event for me?</p>
+                <p>Is this event happening?</p>
             </div>
         </div>
         <div id="createEventDialog" title="Create Event">
@@ -63,10 +64,16 @@
                 <input ng-model="newEventTitle"/>
                 <h3>Description</h3>
                 <input ng-model="newEventDesc"/>
-                <input style="display: block;" ng-click="createEvent(newEventTitle, newEventDesc)" type="submit"/>
+                <h3>Type</h3>
+                <select value="Event" ng-model="newEventType">
+                    <option value="Event">Event</option>
+                    <option value="Question">Question</option>
+                </select>
+                <input style="display: block;" ng-click="createEvent(newEventTitle, newEventDesc, newEventType)" type="submit"/>
             </form>
         </div>
         <script>
+            var currentUserId = "<?php echo $_SESSION["userid"]; ?>";
             /* Set the width of the side navigation to 250px */
             function openNav() {
                 document.getElementById("mySidenav").style.width = "250px";
@@ -106,7 +113,7 @@
                     resizable: false,
                     draggable: false,
                     modal: true
-                })
+                });
                 $( "#opener" ).on( "click", function() {
                     $( "#eventsDialog" ).dialog( "open" );
                 });
