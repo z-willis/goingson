@@ -53,6 +53,9 @@
             <p>{{displayedEvent.title}}</p>
             <h3>Description</h3>
             <p>{{displayedEvent.description}}</p>
+            <div id="votingDialog" title="Verify Event">
+                <p>Can you verify this event for me?</p>
+            </div>
         </div>
         <div id="createEventDialog" title="Create Event">
             <form>
@@ -102,7 +105,14 @@
                     height: 300,
                     width: 300
                 });
-
+                $( "#votingDialog" ).dialog({
+                    autoOpen: false,
+                    show: false,
+                    hide: false,
+                    resizable: false,
+                    draggable: false,
+                    modal: true
+                })
                 $( "#opener" ).on( "click", function() {
                     $( "#eventsDialog" ).dialog( "open" );
                 });
