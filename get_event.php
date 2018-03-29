@@ -1,9 +1,9 @@
 <?php
-include "connect.php";
-$stmt = $con->prepare('SELECT * FROM events WHERE id = ?');
-$stmt->execute(array($_GET["eventId"]));
+    include "connect.php";
+    $stmt = $con->prepare('SELECT * FROM events WHERE eventid = ?');
+    $stmt->execute(array($_GET["eventId"]));
 
-$res = $stmt->fetch();
+    $res = $stmt->fetch();
 
-echo json_encode($res);
+    echo json_encode($res);
 ?>
