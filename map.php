@@ -112,7 +112,7 @@
                     resizable: false,
                     draggable: false,
                     modal: true
-                })
+                });
                 $( "#opener" ).on( "click", function() {
                     $( "#eventsDialog" ).dialog( "open" );
                 });

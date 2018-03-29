@@ -58,7 +58,6 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
 
     // Add a marker to the map
     $scope.addMarker = function(event){
-        console.log(event);
         var pos = new google.maps.LatLng(event.latitude, event.longitude);
         var icon;
         if (event.type_id == 1) {
@@ -108,6 +107,7 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
                                             },
                                             type: "GET",
                                             success:function(data){
+                                                console.log(data);
                                                 $( "#votingDialog" ).dialog( "close" );
                                             }
                                         })
@@ -123,6 +123,7 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
                                             },
                                             type: "GET",
                                             success:function(data){
+                                                console.log(data);
                                                 $( "#votingDialog" ).dialog( "close" );
                                             }
                                         })
