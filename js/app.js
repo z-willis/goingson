@@ -61,10 +61,9 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
     $scope.addMarker = function(event){
         var pos = new google.maps.LatLng(event.latitude, event.longitude);
         var icon;
-        if (event.type_id == 1) {
+        if (event.typeid == 1) {
             icon = {
                 url: "images/marker.png"
-                //scaledSize: new google.maps.Size(50, 50)
             };
         } else {
             icon = null;
@@ -124,9 +123,11 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
             },
             type: "POST",
             success:function(data){
-                console.log(data);
                 $( "#createEventDialog" ).dialog( "close" );
                 $scope.populateMarkers();
+                $scope.newEventTitle = "";
+                $scope.newEventDesc = "";
+                $scope.newEventType = "Event";
             }
         });
     };
