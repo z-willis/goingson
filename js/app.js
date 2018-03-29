@@ -1,4 +1,5 @@
 angular.module('myApp', []).controller('baseCtrl', function($scope) {
+    $scope.canVote = false;
     $scope.currentUserId = currentUserId;
     $scope.displayedEvent = null;
     var map, infoWindow;
@@ -91,51 +92,14 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
                     },
                     type: "GET",
                     success: function(data){
-                        
+
                         // Allow the user to vote for the current event if he/she didn't vote before
                         if(data == 0){
-                            $( "#votingDialog" ).dialog( "open" );
-                            $( "#votingDialog" ).dialog({
-                                buttons:{
-                                    
-                                    // Increase the number of votes for the event if the user chooses "YES"
-                                    "Yes": function(){
-                                        jQuery.ajax({
-                                            url: "inc_vote.php",
-                                            data:{
-                                                "id": marker.eventId
-                                            },
-                                            type: "GET",
-                                            success:function(data){
-                                                console.log(data);
-                                                $( "#votingDialog" ).dialog( "close" );
-                                            }
-                                        })
-
-                                    },
-                                    
-                                    // Decrease the number of votes for the event if the user chooses "NO"
-                                    "No": function(){
-                                        jQuery.ajax({
-                                            url: "dec_vote.php",
-                                            data:{
-                                                "id": marker.eventId
-                                            },
-                                            type: "GET",
-                                            success:function(data){
-                                                console.log(data);
-                                                $( "#votingDialog" ).dialog( "close" );
-                                            }
-                                        })
-                                    },
-                                    
-                                    // Close the dialog box if the user click on this option (the user will be allowed to vote when he/she will open the event again)
-                                    "I am not there": function(){
-                                        $( this ).dialog( "close" );
-                                    }
-                                }
-                            })
+                            $scope.canVote = true;
+                        } else {
+                            $scope.canVote = false;
                         }
+                        $scope.$apply();
                     }
                 });
             }
@@ -179,6 +143,49 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
                 $scope.$apply();
             }
         });
+    };
+
+    $scope.openVoteDialog = function(eventId) {
+        $( "#votingDialog" ).dialog( "open" );
+        $( "#votingDialog" ).dialog({
+            buttons:{
+
+                // Increase the number of votes for the event if the user chooses "YES"
+                "Yes": function(){
+                    jQuery.ajax({
+                        url: "inc_vote.php",
+                        data:{
+                            "id": eventId
+                        },
+                        type: "GET",
+                        success:function(data){
+                            console.log(data);
+                            $scope.canVote = false;
+                            $scope.$apply();
+                            $( "#votingDialog" ).dialog( "close" );
+                        }
+                    })
+
+                },
+
+                // Decrease the number of votes for the event if the user chooses "NO"
+                "No": function() {
+                    jQuery.ajax({
+                        url: "dec_vote.php",
+                        data: {
+                            "id": eventId
+                        },
+                        type: "GET",
+                        success: function (data) {
+                            console.log(data);
+                            $scope.canVote = false;
+                            $scope.$apply();
+                            $("#votingDialog").dialog("close");
+                        }
+                    })
+                }
+            }
+        })
     };
 
     google.maps.event.addDomListener(window, 'load', $scope.initialize);

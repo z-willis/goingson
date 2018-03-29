@@ -53,8 +53,9 @@
             <p>{{displayedEvent.title}}</p>
             <h3>Description</h3>
             <p>{{displayedEvent.description}}</p>
+            <button ng-if="canVote" ng-click="openVoteDialog(displayedEvent.eventid)">Can You Verify This Event?</button>
             <div id="votingDialog" title="Verify Event">
-                <p>Can you verify this event for me?</p>
+                <p>Is this event happening?</p>
             </div>
         </div>
         <div id="createEventDialog" title="Create Event">
