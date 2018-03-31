@@ -57,6 +57,7 @@
             <div id="votingDialog" title="Verify Event">
                 <p>Is this event happening?</p>
             </div>
+            <button ng-if="displayedEvent.userid == currentUserId" ng-click="openEditDialog()">Edit</button>
         </div>
         <div id="createEventDialog" title="Create Event">
             <form>
@@ -70,6 +71,20 @@
                     <option value="Question">Question</option>
                 </select>
                 <input style="display: block;" ng-click="createEvent(newEventTitle, newEventDesc, newEventType)" type="submit"/>
+            </form>
+        </div>
+        <div id="editEventDialog" title="Create Event">
+            <form>
+                <h3>Title</h3>
+                <input ng-model="displayedEvent.title"/>
+                <h3>Description</h3>
+                <input ng-model="displayedEvent.description"/>
+                <h3>Type</h3>
+                <select value="Event" ng-model="displayedEvent.typeId">
+                    <option value="Event">Event</option>
+                    <option value="Question">Question</option>
+                </select>
+<!--                <input style="display: block;" ng-click="createEvent(newEventTitle, newEventDesc, newEventType)" type="submit"/>-->
             </form>
         </div>
         <script>
@@ -96,8 +111,8 @@
                     autoOpen: false,
                     show: false,
                     hide: false,
-                    height: 600,
-                    width: 600
+                    height: 300,
+                    width: 300
                 });
                 $( "#createEventDialog" ).dialog({
                     autoOpen: false,
@@ -113,6 +128,13 @@
                     resizable: false,
                     draggable: false,
                     modal: true
+                });
+                $( "#editEventDialog" ).dialog({
+                    autoOpen: false,
+                    show: false,
+                    hide: false,
+                    height: 300,
+                    width: 300
                 });
                 $( "#opener" ).on( "click", function() {
                     $( "#eventsDialog" ).dialog( "open" );
