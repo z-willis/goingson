@@ -189,5 +189,47 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
         })
     };
 
+    $scope.openEditDialog = function(){
+        $( "#eventDialog" ).dialog( "close" );
+        $( "#editEventDialog" ).dialog( "open" );
+        $( "#editEventDialog" ).dialog({
+            buttons:{
+                "Save": function(){
+                    console.log($scope.displayedEvent);
+                    jQuery.ajax({
+                        url: "edit_event.php",
+                        data: {
+                            "eventid": $scope.displayedEvent.eventid,
+                            "title": $scope.displayedEvent.title,
+                            "description": $scope.displayedEvent.description
+                        },
+                        type: "POST",
+                        success: function (data) {
+                            console.log(data);
+                            $("#editEventDialog").dialog("close");
+                        }
+                    });
+                    $scope.populateMarkers();
+                },
+                "Delete": function(){
+                    jQuery.ajax({
+                        url: "delete_event.php",
+                        data: {
+                            "eventid": $scope.displayedEvent.eventid
+                        },
+                        type: "POST",
+                        success: function (data) {
+                            $("#editEventDialog").dialog("close");
+                        }
+                    });
+                    $scope.populateMarkers();
+                },
+                "Cancel": function(){
+                    $( "#editEventDialog" ).dialog( "close" );
+                }
+            }
+        })
+    };
+
     google.maps.event.addDomListener(window, 'load', $scope.initialize);
 });
