@@ -2,9 +2,11 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
     $scope.canVote = false;
     $scope.currentUserId = currentUserId;
     $scope.displayedEvent = null;
-    var map, infoWindow;
     $scope.events = [];
     $scope.newEventType = "Event";
+    $scope.markers = [];
+
+    var map, infoWindow;
 
     $scope.populateMarkers = function(){
         jQuery.ajax({
@@ -18,6 +20,13 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
                 $scope.$apply();
             }
         });
+    };
+
+    $scope.clearMarkers = function(){
+        for (var i = 0; i < $scope.markers.length; i++) {
+            $scope.markers[i].setMap(null);
+        }
+        $scope.markers = [];
     };
 
     $scope.initialize = function() {
@@ -103,6 +112,8 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
                 });
             }
         });
+
+        $scope.markers.push(marker);
     };
     
     $scope.createEvent = function (title, desc, type) {
@@ -219,10 +230,11 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
                         },
                         type: "POST",
                         success: function (data) {
+                            $scope.clearMarkers();
+                            $scope.populateMarkers();
                             $("#editEventDialog").dialog("close");
                         }
                     });
-                    $scope.populateMarkers();
                 },
                 "Cancel": function(){
                     $( "#editEventDialog" ).dialog( "close" );
