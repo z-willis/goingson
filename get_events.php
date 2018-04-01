@@ -1,6 +1,6 @@
 <?php
     include "connect.php";
-    $stmt = $con->prepare('SELECT * FROM events WHERE deleted_at = null');
+    $stmt = $con->prepare('SELECT * FROM events WHERE deleted_at IS NULL');
     $stmt->execute();
 
     $res = $stmt->fetchAll();
