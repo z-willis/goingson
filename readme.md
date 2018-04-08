@@ -65,5 +65,5 @@ Values ("Question");
 ```
 
 For the timer to work, to new columns need to be added the events table:
-- duration -> which is an int
+- duration -> which is an int and its default value is NULL
 - endDate -> which is text and its default value is NULL
