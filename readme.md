@@ -63,3 +63,7 @@ Values ("Event");
 INSERT INTO event_types (name)
 Values ("Question");
 ```
+
+For the timer to work, to new columns need to be added the events table:
+- duration -> which is an int
+- endDate -> which is text and its default value is NULL
