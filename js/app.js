@@ -8,10 +8,14 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
 
     var map, infoWindow;
 
-    $scope.populateMarkers = function(){
+    $scope.populateMarkers = function(userid){
+        $scope.clearMarkers();
         jQuery.ajax({
             url: "get_events.php",
-            type: "GET",
+            type: "POST",
+            data:{
+                "userFilter": userid
+            },
             success:function(data){
                 $scope.events = JSON.parse(data);
                 angular.forEach($scope.events, function (event) {
@@ -63,7 +67,7 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
             $scope.newEventLong = e.latLng.lng();
         });
 
-        $scope.populateMarkers();
+        $scope.populateMarkers(null);
     };
 
     // Add a marker to the map
@@ -135,7 +139,7 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
             type: "POST",
             success:function(data){
                 $( "#createEventDialog" ).dialog( "close" );
-                $scope.populateMarkers();
+                $scope.populateMarkers(null);
                 $scope.newEventTitle = "";
                 $scope.newEventDesc = "";
                 $scope.newEventType = "Event";
@@ -171,7 +175,6 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
                         },
                         type: "GET",
                         success:function(data){
-                            console.log(data);
                             $scope.canVote = false;
                             $scope.$apply();
                             $( "#votingDialog" ).dialog( "close" );
@@ -189,7 +192,6 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
                         },
                         type: "GET",
                         success: function (data) {
-                            console.log(data);
                             $scope.canVote = false;
                             $scope.$apply();
                             $("#votingDialog").dialog("close");
@@ -206,7 +208,6 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
         $( "#editEventDialog" ).dialog({
             buttons:{
                 "Save": function(){
-                    console.log($scope.displayedEvent);
                     jQuery.ajax({
                         url: "edit_event.php",
                         data: {
@@ -216,11 +217,10 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
                         },
                         type: "POST",
                         success: function (data) {
-                            console.log(data);
                             $("#editEventDialog").dialog("close");
                         }
                     });
-                    $scope.populateMarkers();
+                    $scope.populateMarkers(null);
                 },
                 "Delete": function(){
                     jQuery.ajax({
@@ -231,7 +231,7 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
                         type: "POST",
                         success: function (data) {
                             $scope.clearMarkers();
-                            $scope.populateMarkers();
+                            $scope.populateMarkers(null);
                             $("#editEventDialog").dialog("close");
                         }
                     });
