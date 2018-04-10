@@ -566,7 +566,7 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
                     
                     // make sure the email is valid, otherwise show an error
                     if(!isValidEmail){
-                        if($( "#errorsDialog" ).children().hasClass(".shortPass")){
+                        if($( "#errorsDialog" ).children().hasClass(".invalidEmail")){
                             $( ".invalidEmail" ).remove();
                         }else{
                             $( "#errorsDialog" ).append("<div class='.invalidEmail'><h3>Invalid Email</h3><p>- Please enter a valid email</p></div>");
