@@ -1,4 +1,5 @@
-angular.module('myApp', []).controller('baseCtrl', function($scope) {
+angular.module('myApp', [])
+.controller('baseCtrl', function($scope) {
     $scope.canVote = false;
     $scope.currentUserId = currentUserId;
     $scope.displayedEvent = null;
@@ -244,4 +245,49 @@ angular.module('myApp', []).controller('baseCtrl', function($scope) {
     };
 
     google.maps.event.addDomListener(window, 'load', $scope.initialize);
+})
+.controller('loginCtrl', function($scope, $window) {
+    $scope.active = 'login';
+    $scope.setFocus = function (clicked) {
+        $scope.active = clicked;
+    };
+
+    $scope.login = function(username, password){
+        jQuery.ajax({
+            url: "login.php",
+            data: {
+                "username": username,
+                "password": password
+            },
+            type: "POST",
+            success: function (data) {
+                if (data == 1) {
+                    $window.location.href = '/testing/map.php';
+                } else {
+                    console.log('error');
+                }
+            }
+        });
+    };
+
+    $scope.createAccount = function(username, password, repeatPassword, email){
+        jQuery.ajax({
+            url: "create_account.php",
+            data: {
+                "username": username,
+                "password": password,
+                "repeat-password": repeatPassword,
+                "email": email
+            },
+            type: "POST",
+            success: function (data) {
+                console.log(data);
+                if (data == 1) {
+                    $window.location.reload();
+                } else {
+                    console.log('error');
+                }
+            }
+        });
+    }
 });
