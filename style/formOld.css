@@ -1,72 +1,56 @@
-.main {
-    border-radius: 25px;
-    background: #2C1A59;
-    padding: 20px;
-    width: 400px;
-    height: 500px;
-    margin: 0 auto;
+*{
+    box-sizing: border-box;
 }
 
-.main .title {
+body{
+    background-color: #303952;
+    font-family: Arial, Tahoma;
+    font-weight: bold;
+}
+
+/* Login and create account used to change the forms */
+.main > p{
     text-align: center;
-    color: #FCB912;
-    font-size: 300%;
-}
-
-.main .body {
-    text-align: center;
-    color: #FCB912;
-    font-size: 150%;
-}
-
-.options {
-    text-align: center;
-}
-
-.options .login {
-    color: #FCB912;
-    display: inline;
+    font-size: 52px;
+    font-weight: bold;
     cursor: pointer;
+    margin-top: 0;
+    padding: 40px;
 }
 
-.options .blocker {
-    color: #FCB912;
-    display: inline;
+.main p .login{
+    color: #3498db;
 }
 
-.options .create-account {
-    color: #FCB912;
-    display: inline;
-    cursor: pointer;
+.main p .create-account{
+    color: #27ae60;
 }
 
 /* Center the forms horizontally and vertically */
 .container{
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Styling for the all the input fields inside the form */
-.login-form div > input,
+.login-form > input,
 .create-account-form div > input{
-    height: 50px;
-    display:inline-block;
+    display: block;
+    margin-bottom: 20px;
+    padding: 16px;
+    border: none;    
     width: 341px;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
 }
 
 /* Styling for the submit button inside the form */
 .login-form input[type=submit],
 .create-account-form input[type=submit]{
-    background-color: #2C1A59;
-    border: 2px solid #FCB912;
-    color: #FCB912;
-    padding: 16px 32px;
-    margin: 4px 2px;
-    cursor: pointer;
+    color: #3c6382;
+    font-weight: bold;
     width: 341px;
     height: 50px;
+    border: none;
 }
 
 .create-account-form{
@@ -98,7 +82,7 @@
 .availability,
 p.temporary{
     opacity: 0;
-    background-color: #FCB912;
+    background-color: #a29bfe;
     width: 410px;
     border: none;
 }
@@ -120,7 +104,7 @@ p.temporary{
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: -4px;
-    left: 370px;
+    top: -16px;
+    left: 341px;
 }
 

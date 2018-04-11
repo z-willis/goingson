@@ -134,26 +134,17 @@
         <link rel="stylesheet" href="style/form.css">
     </head>
     <body>
-    <br><br>
         <section class="main">
-            <h1 class="title">GoingZ On</h1>
-            <p class="body">GoingZ On is an app that deserves a better description, but I'm not creative enough to make one.</p>
-
-            <div class="options">
-                <h2 class="login">Login</h2>
-                <h2 class="blocker"> | </h2>
-                <h2 class="create-account">Sign Up</h2>
-            </div>
+            <p>
+                <span class="login">Login | </span>
+                <span class="create-account">Sign Up</span>
+            </p>
             <section class="container">
                 
                 <!-- Start login form -->
-                <form class="login-form"  method="POST" action="<?php echo $_SERVER["PHP_SELF"];?>" >
-                    <div class="user-input">
-                        <input class="input" type="text" name="username" placeholder="Username" autocomplete="off">
-                    </div>
-                    <div class="user-pass">
-                        <input type="password" name="password" placeholder="Password" autocomplete="new-password">
-                    </div>
+                <form class="login-form"  method="POST" action="<?php echo $_SERVER["PHP_SELF"];?>" > 
+                    <input type="text" name="username" placeholder="Username" autocomplete="off">
+                    <input type="password" name="password" placeholder="Password" autocomplete="new-password">
                     <input type="submit" value="Login" name="account" disabled>
                     <p class="errors"><?php foreach($loginErrors as $error){echo $error;}?></p>
                     <p class="success"><?php if(strlen($success) != 0){echo $success;}?></p>
