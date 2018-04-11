@@ -28,13 +28,31 @@
                 <span onclick="openNav()"><a><image src="images/drawer.png"></image></a></span>
             </li>
         </ul>
+        
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="#" id="opener">Events</a>
             <a href="#">Services</a>
             <a href="#">Clients</a>
             <a href="#" ng-click="populateMarkers(null)">Refresh</a>
+            <a href="#" ng-click="updateProfile()">Update Profile</a>
+            <a href="#" ng-click="populateMarkers()">Refresh</a>
             <a href="logout.php">Logout</a>
+        </div>
+        
+        <div id="profileDialog" title="Edit Profile" style="display:none">
+            <form>
+                <h3>Username: </h3>
+                <input type="text" id="username" autocomplete="off" />
+                <h3>Password: </h3>
+                <input type="password" id="password" autocomplete="new-password" />
+                <h3>Email: </h3>
+                <input type="text" id="email" autocomplete="off" />
+            </form>
+        </div>
+        
+        <div id="errorsDialog" title="Update errors">
+            
         </div>
 
         <div id="map"></div>
@@ -50,17 +68,32 @@
             <button ng-click="populateMarkers(currentUserId)">My Events</button>
             <button ng-click="populateMarkers(null)">All Events</button>
         </div>
+        
         <div id="eventDialog" title="Event">
             <h3>Title</h3>
             <p>{{displayedEvent.title}}</p>
             <h3>Description</h3>
             <p>{{displayedEvent.description}}</p>
-            <button ng-if="canVote" ng-click="openVoteDialog(displayedEvent.eventid)">Can You Verify This Event?</button>
+            <button ng-if="canVote && !eventEnded" ng-click="openVoteDialog(displayedEvent.eventid)">Can You Verify This Event?</button>
             <div id="votingDialog" title="Verify Event">
                 <p>Is this event happening?</p>
             </div>
             <button ng-if="displayedEvent.userid == currentUserId" ng-click="openEditDialog()">Edit</button>
+            <button ng-if="displayedEvent.userid == currentUserId && canSetEndDate && canSetDuration" ng-click="openTimerDialog(displayedEvent.eventid)">Set event duration</button>
+            <div id="eventTimer" title="Set Event Duration">
+                <p>Duration of the event:</p>
+                <input type="number" id="hourVal" min="0" value="0" > Hour(s)
+                <br/>
+                <input type="number" id="minVal" min="0" max="59" value="0"> Minute(s)
+                <p>Please note that the event duration can't be changed once it is set.</p>
+            </div>
+            <button ng-if="displayedEvent.userid == currentUserId && canSetEndDate && !counterStarted && !canSetDuration" ng-click="startCountdown()">Start Event</button>
+            <div id="countdown">
+                <span id="time"></span>
+                <span id="finishTime"></span>
+            </div>
         </div>
+        
         <div id="createEventDialog" title="Create Event">
             <form>
                 <h3>Title</h3>
@@ -75,6 +108,7 @@
                 <input style="display: block;" ng-click="createEvent(newEventTitle, newEventDesc, newEventType)" type="submit"/>
             </form>
         </div>
+        
         <div id="editEventDialog" title="Create Event">
             <form>
                 <h3>Title</h3>
@@ -91,6 +125,7 @@
         </div>
         <script>
             var currentUserId = "<?php echo $_SESSION["userid"]; ?>";
+            var currentUsername = "<?php echo $_SESSION["user"]; ?>";
             /* Set the width of the side navigation to 250px */
             function openNav() {
                 document.getElementById("mySidenav").style.width = "250px";
@@ -137,6 +172,27 @@
                     hide: false,
                     height: 300,
                     width: 300
+                });
+                $( "#eventTimer" ).dialog({
+                    autoOpen: false,
+                    show: false,
+                    hide: false,
+                    height: 300,
+                    width: 300
+                });
+                $( "#profileDialog" ).dialog({
+                    autoOpen: false,
+                    show: false,
+                    hide: false,
+                    height: 380,
+                    width: 300
+                });
+                $( "#errorsDialog" ).dialog({
+                    autoOpen: false,
+                    show: false,
+                    hide: false,
+                    height: 450,
+                    width: 350
                 });
                 $( "#opener" ).on( "click", function() {
                     $( "#eventsDialog" ).dialog( "open" );
