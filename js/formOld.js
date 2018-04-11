@@ -34,18 +34,18 @@ $(document).ready(function(){
     // Activate the login button only when the user enters all the information needed
     loginList.keyup(function(){
         if(loginUser.val().length >= userLength && loginPass.val().length >= passLength){
-            loginSubmit.removeAttr("disabled");
+            loginSubmit.removeAttr("disabled").css("background-color", "#3498db").css("color", "white").css("cursor", "pointer");
         }else{
-            loginSubmit.attr("disabled", "disabled");
+            loginSubmit.attr("disabled", "disabled").css("background-color", "buttonface").css("color", "#3c6382").css("cursor", "default");
         } 
     });
         
     // Activate the create account button only when the user enters all the information needed
     createAccountList.keyup(function(){
         if(createAccountUser.val().length >= userLength && createAccountPass.val().length >= passLength && createAccountPass.val() == repeatPass.val() && validateEmail(createAccountEmail.val())){
-            createAccountSubmit.removeAttr("disabled");
+            createAccountSubmit.removeAttr("disabled").css("background-color", "#27ae60").css("color", "white").css("cursor", "pointer");
         }else{
-            createAccountSubmit.attr("disabled", "disabled");
+            createAccountSubmit.attr("disabled", "disabled").css("background-color", "buttonface").css("color", "#3c6382").css("cursor", "default");
         } 
     });
     

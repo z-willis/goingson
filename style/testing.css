@@ -1,0 +1,64 @@
+.holder{
+    border-radius: 25px;
+    background: #2C1A59;
+    padding: 20px;
+    width: 400px;
+    height: 500px;
+    margin: 0 auto;
+}
+
+.holder .options {
+    text-align: center;
+}
+
+.holder .login {
+    color: #FCB912;
+    display: inline;
+    cursor: pointer;
+}
+
+.holder .blocker {
+    color: #FCB912;
+    display: inline;
+}
+
+.holder .create-account {
+    color: #FCB912;
+    display: inline;
+    cursor: pointer;
+}
+
+.holder .title {
+    text-align: center;
+    color: #FCB912;
+    font-size: 300%;
+}
+
+.holder .body {
+    text-align: center;
+    color: #FCB912;
+    font-size: 150%;
+}
+
+.holder .form {
+    text-align: center;
+}
+
+.holder .form .input{
+    display:inline-block;
+    width: 341px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.holder .form .login-button {
+    background-color: #2C1A59;
+    border: 2px solid #FCB912;
+    color: #FCB912;
+    padding: 16px 32px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 341px;
+    height: 50px;
+}

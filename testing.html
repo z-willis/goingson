@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>GoingZ On</title>
+    <link rel="stylesheet" href="style/normalize.css">
+    <link rel="stylesheet" href="style/testing.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body ng-controller="loginCtrl">
+    <br><br>
+    <div class="holder">
+        <h1 class="title">GoingZ On</h1>
+        <p class="body">GoingZ On is an app that deserves a better description, but I'm not creative enough to make one.</p>
+
+        <div class="options">
+            <h2 class="login" ng-click="setFocus('login')">Login</h2>
+            <h2 class="blocker"> | </h2>
+            <h2 class="create-account" ng-click="setFocus('create-account')">Sign Up</h2>
+        </div>
+
+        <form class="form" ng-if="active == 'login'">
+            <input class="input" type="text" name="username" placeholder="Username" autocomplete="off" ng-model="username" required>
+            <input class="input" type="password" name="password" placeholder="Password" autocomplete="new-password" ng-model="password" required>
+            <input class="login-button" type="submit" value="Login" name="account" align="center" ng-click="login(username, password)">
+        </form>
+        <form class="form" ng-if="active == 'create-account'">
+            <input class="input" type="text" name="username" placeholder="Username" autocomplete="off" ng-model="username" required>
+            <input class="input" type="password" name="password" placeholder="Password" autocomplete="new-password" ng-model="password" required>
+            <input class="input" type="password" name="repeat-password" placeholder="Re-enter password" autocomplete="new-password" ng-model="repeatPassword" required>
+            <input class="input" type="email" name="email" placeholder="Email" autocomplete="off" ng-model="email" required>
+            <input class="login-button" type="submit" value="Create Account" name="account" ng-click="createAccount(username, password, repeatPassword, email)">
+        </form>
+    </div>
+</body>
+</html>
