@@ -1,6 +1,7 @@
 .main {
     border-radius: 25px;
-    background: #2C1A59;
+    background-color: #2C1A59;
+    background-image: linear-gradient(to right, #2C1A59, #421D56);
     padding: 20px;
     width: 400px;
     height: 500px;
