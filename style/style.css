@@ -71,7 +71,8 @@
     color: #FCB912;
     display: block;
     transition: 0.3s;
-    font-family: bodyFont;
+    /*font-family: bodyFont;*/
+    font-family: Verdana;
 }
 
 .sidenav a .top {
@@ -79,7 +80,7 @@
 
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
-    background-color: #818181;
+    background-color: #342d59;
 }
 
 /* Position and style the close button (top right corner) */
