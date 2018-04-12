@@ -1,10 +1,23 @@
+@font-face {
+    font-family: titleFont;
+    src: url("fonts/Abadi MT Condensed Extra Bold.ttf");
+}
+
+@font-face {
+    font-family: bodyFont;
+    src: url("fonts/Myriad Pro Regular.ttf");
+}
+
 .top-nav-bar {
+    width: 100%;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #2C1A59;
     background-image: linear-gradient(to right, #2C1A59, #421D56);
+    position: absolute;
+    z-index: 1;
 }
 
 .top-nav-bar .tab-right {
@@ -19,6 +32,7 @@
 .top-nav-bar .tab-middle {
     text-align: center;
     color: #FCB912;
+    font-family: titleFont;
 }
 
 .top-nav-bar .tab-left {
@@ -28,6 +42,9 @@
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+}
+
+.top-nav-bar .tab-left .drawer {
     cursor: pointer;
 }
 
@@ -54,6 +71,7 @@
     color: #FCB912;
     display: block;
     transition: 0.3s;
+    font-family: bodyFont;
 }
 
 .sidenav a .top {

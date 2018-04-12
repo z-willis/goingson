@@ -25,7 +25,7 @@
     <body ng-controller="baseCtrl">
         <ul class="top-nav-bar" ng>
             <li class="tab-left">
-                <span onclick="toggleNav()"><a><image src="images/drawer.png"></image></a></span>
+                <span onclick="toggleNav()"><a><image class="drawer" src="images/drawer.png"></image></a></span>
             </li>
             <li class="tab-middle">
                 <h1>GoingZ On</h1>
@@ -64,8 +64,6 @@
                     <p class="text">{{event.description}}</p>
                 </li>
             </ul>
-            <button ng-click="populateMarkers(currentUserId)">My Events</button>
-            <button ng-click="populateMarkers(null)">All Events</button>
         </div>
         
         <div id="eventDialog" title="Event">
@@ -191,9 +189,6 @@
                     hide: false,
                     height: 450,
                     width: 350
-                });
-                $( "#opener" ).on( "click", function() {
-                    $( "#eventsDialog" ).dialog( "open" );
                 });
             } );
         </script>
