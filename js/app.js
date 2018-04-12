@@ -535,7 +535,7 @@ angular.module('myApp', [])
         
         $( "#profileDialog" ).dialog({
             buttons: {
-                "Save": function(){
+                "Update": function(){
                 
                     // Check the length of the username
                     if(username.length < 5){
