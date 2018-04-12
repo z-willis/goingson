@@ -100,10 +100,12 @@ angular.module('myApp', [])
         var icon;
         if (event.typeid == 1) {
             icon = {
-                url: "images/marker.png"
+                url: null
             };
         } else {
-            icon = null;
+            icon = {
+                url: "images/markerYellow.png"
+            };
         }
         var marker = new google.maps.Marker({
             position: pos,
