@@ -100,7 +100,7 @@ angular.module('myApp', [])
         var icon;
         if (event.typeid == 1) {
             icon = {
-                url: null
+                url: "images/markerPurple.png"
             };
         } else {
             icon = {
