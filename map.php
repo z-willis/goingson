@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link type='text/css' rel='stylesheet' href='style/style.css'/>
         <link type='text/css' rel='stylesheet' href='style/normalize.css'/>
-        <title>Testing</title>
+        <title>GoingZ On</title>
 
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -25,18 +25,17 @@
     <body ng-controller="baseCtrl">
         <ul class="top-nav-bar" ng>
             <li class="tab-left">
-                <span onclick="openNav()"><a><image src="images/drawer.png"></image></a></span>
+                <span onclick="toggleNav()"><a><image class="drawer" src="images/drawer.png"></image></a></span>
+            </li>
+            <li class="tab-middle">
+                <h1>GoingZ On</h1>
             </li>
         </ul>
         
         <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#" id="opener">Events</a>
-            <a href="#">Services</a>
-            <a href="#">Clients</a>
+            <a class="top" href="#" id="opener">Events</a>
+            <a href="#" ng-click="updateProfile()">Profile</a>
             <a href="#" ng-click="populateMarkers(null)">Refresh</a>
-            <a href="#" ng-click="updateProfile()">Update Profile</a>
-            <a href="#" ng-click="populateMarkers()">Refresh</a>
             <a href="logout.php">Logout</a>
         </div>
         
@@ -65,8 +64,6 @@
                     <p class="text">{{event.description}}</p>
                 </li>
             </ul>
-            <button ng-click="populateMarkers(currentUserId)">My Events</button>
-            <button ng-click="populateMarkers(null)">All Events</button>
         </div>
         
         <div id="eventDialog" title="Event">
@@ -126,14 +123,13 @@
         <script>
             var currentUserId = "<?php echo $_SESSION["userid"]; ?>";
             var currentUsername = "<?php echo $_SESSION["user"]; ?>";
-            /* Set the width of the side navigation to 250px */
-            function openNav() {
-                document.getElementById("mySidenav").style.width = "250px";
-            }
 
-            /* Set the width of the side navigation to 0 */
-            function closeNav() {
-                document.getElementById("mySidenav").style.width = "0";
+            function toggleNav() {
+                if(document.getElementById("mySidenav").style.width == 0 || document.getElementById("mySidenav").style.width == "0px"){
+                    document.getElementById("mySidenav").style.width = "200px";
+                } else {
+                    document.getElementById("mySidenav").style.width = "0px";
+                }
             }
 
             $( function() {
@@ -193,9 +189,6 @@
                     hide: false,
                     height: 450,
                     width: 350
-                });
-                $( "#opener" ).on( "click", function() {
-                    $( "#eventsDialog" ).dialog( "open" );
                 });
             } );
         </script>

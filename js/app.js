@@ -15,6 +15,21 @@ angular.module('myApp', [])
 
     var map, infoWindow;
 
+
+    $( "#opener" ).on( "click", function() {
+        $( "#eventsDialog" ).dialog( "open" );
+        $( "#eventsDialog" ).dialog({
+            buttons:{
+                "My Events" : function() {
+                    $scope.populateMarkers(currentUserId)
+                },
+                "All Events" : function () {
+                    $scope.populateMarkers(null)
+                }
+            }
+        })
+    });
+
     $scope.populateMarkers = function(userid){
         $scope.clearMarkers();
         jQuery.ajax({
@@ -45,7 +60,9 @@ angular.module('myApp', [])
         map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: 31.801890, lng: -85.957228},
             zoom: 18,
-            disableDoubleClickZoom: false
+            disableDoubleClickZoom: false,
+            disableDefaultUI: true,
+            zoomControl: true
         });
 
         var infoWindow = new google.maps.InfoWindow;
@@ -83,10 +100,12 @@ angular.module('myApp', [])
         var icon;
         if (event.typeid == 1) {
             icon = {
-                url: "images/marker.png"
+                url: "images/markerPurple.png"
             };
         } else {
-            icon = null;
+            icon = {
+                url: "images/markerYellow.png"
+            };
         }
         var marker = new google.maps.Marker({
             position: pos,
@@ -535,7 +554,7 @@ angular.module('myApp', [])
         
         $( "#profileDialog" ).dialog({
             buttons: {
-                "Save": function(){
+                "Update": function(){
                 
                     // Check the length of the username
                     if(username.length < 5){

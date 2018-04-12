@@ -1,27 +1,51 @@
+@font-face {
+    font-family: titleFont;
+    src: url("fonts/Abadi MT Condensed Extra Bold.ttf");
+}
+
+@font-face {
+    font-family: bodyFont;
+    src: url("fonts/Myriad Pro Regular.ttf");
+}
+
 .top-nav-bar {
+    width: 100%;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #424242;
+    background-color: #2C1A59;
+    background-image: linear-gradient(to right, #2C1A59, #421D56);
+    position: absolute;
+    z-index: 1;
 }
 
 .top-nav-bar .tab-right {
     float: right;
     display: inline-block;
-    color: white;
+    color: #FCB912;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 
+.top-nav-bar .tab-middle {
+    text-align: center;
+    color: #FCB912;
+    font-family: titleFont;
+}
+
 .top-nav-bar .tab-left {
     float: left;
     display: inline-block;
-    color: white;
+    color: #FCB912;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+}
+
+.top-nav-bar .tab-left .drawer {
+    cursor: pointer;
 }
 
 /* The side navigation menu */
@@ -30,11 +54,12 @@
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 1; /* Stay on top */
-    top: 0; /* Stay at the top */
+    top: 68px; /* Stay at the top */
     left: 0;
-    background-color: #424242;
+    background-color: #2C1A59;
+    /*background-image: linear-gradient(to right, #2C1A59, #421D56);*/
     overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
+    /*padding-top: 60px; !* Place content 60px from the top *!*/
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
@@ -43,14 +68,18 @@
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color: white;
+    color: #FCB912;
     display: block;
     transition: 0.3s;
+    font-family: bodyFont;
+}
+
+.sidenav a .top {
 }
 
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
-    color: #818181;
+    background-color: #818181;
 }
 
 /* Position and style the close button (top right corner) */
