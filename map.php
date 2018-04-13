@@ -41,6 +41,8 @@
         
         <div id="profileDialog" title="Edit Profile" style="display:none">
             <form>
+                <h3>Name: </h3>
+                <input type="text" id="name" autocomplete="off" />
                 <h3>Username: </h3>
                 <input type="text" id="username" autocomplete="off" />
                 <h3>Password: </h3>
@@ -52,7 +54,7 @@
 
         <div id="viewProfileDialog" title="Profile">
             <img src="images/default.png">
-            <h1>{{userInfo.username}}</h1>
+            <h1>{{userInfo.name}} - {{userInfo.username}}</h1>
             <h3>{{userInfo.email}}</h3>
         </div>
         

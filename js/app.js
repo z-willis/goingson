@@ -548,19 +548,25 @@ angular.module('myApp', [])
     // The function the update the user's infromation in the database
     $scope.updateProfile = function(){
         
-        var username = "", password = "", email = "", usernameExists = true, isValidEmail = true;        
+        var username = "", password = "", email = "", name = "", usernameExists = true, isValidEmail = true;
         
         // get the user's info from the database
         jQuery.ajax({
             url: "get_user_info.php",
             success: function(data){
                 $scope.userInfo = JSON.parse(data);
+                if($scope.userInfo.name) {
+                    $("#name").val($scope.userInfo.name);
+                } else {
+                    $("#name").val("");
+                }
                 $( "#username" ).val($scope.userInfo.username);
                 $( "#password" ).val(""); // make the password empty because it is encrypted in the database and can't be decrypted
                 $( "#email" ).val($scope.userInfo.email);
                 
                 username = $scope.userInfo.username;
                 email = $scope.userInfo.email;
+                name = $scope.userInfo.name;
             }
         });
         
@@ -589,6 +595,10 @@ angular.module('myApp', [])
         
         $( "#password" ).blur(function(){
                 password = $( "#password" ).val();
+        });
+
+        $( "#name" ).blur(function(){
+            name = $( "#name" ).val();
         });
         
         $( "#email" ).blur(function(){
@@ -649,6 +659,7 @@ angular.module('myApp', [])
                         jQuery.ajax({
                             url: "edit_user_info.php",
                             data:{
+                                "name": name,
                                 "username": username,
                                 "password": password,
                                 "email": email
