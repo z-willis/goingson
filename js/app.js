@@ -523,6 +523,27 @@ angular.module('myApp', [])
         });
     };
     
+    $scope.viewProfile = function(){
+        jQuery.ajax({
+            url: "get_user_info.php",
+            success: function(data){
+                $scope.userInfo = JSON.parse(data);
+                $scope.$apply();
+            }
+        });
+        $("#viewProfileDialog").dialog("open");
+        $("#viewProfileDialog").dialog({
+            buttons:{
+                "Update": function () {
+                    $scope.updateProfile();
+                    $("#viewProfileDialog").dialog("close");
+                },
+                "Close": function () {
+                    $("#viewProfileDialog").dialog("close");
+                }
+            }
+        });
+    };
     
     // The function the update the user's infromation in the database
     $scope.updateProfile = function(){
@@ -584,7 +605,7 @@ angular.module('myApp', [])
         
         $( "#profileDialog" ).dialog({
             buttons: {
-                "Update": function(){
+                "Save": function(){
                 
                     // Check the length of the username
                     if(username.length < 5){
@@ -634,6 +655,7 @@ angular.module('myApp', [])
                             },
                             type: "POST",
                             success: function(data){
+                                $scope.viewProfile();
                                 $( "#profileDialog" ).dialog( "close" );
                             }
                         });

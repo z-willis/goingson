@@ -34,7 +34,7 @@
         
         <div id="mySidenav" class="sidenav">
             <a class="top" href="#" id="opener">Events</a>
-            <a href="#" ng-click="updateProfile()">Profile</a>
+            <a href="#" ng-click="viewProfile()">Profile</a>
             <a href="#" ng-click="populateMarkers(null)">Refresh</a>
             <a href="logout.php">Logout</a>
         </div>
@@ -48,6 +48,12 @@
                 <h3>Email: </h3>
                 <input type="text" id="email" autocomplete="off" />
             </form>
+        </div>
+
+        <div id="viewProfileDialog" title="Profile">
+            <img src="images/default.png">
+            <h1>{{userInfo.username}}</h1>
+            <h3>{{userInfo.email}}</h3>
         </div>
         
         <div id="errorsDialog" title="Update Errors">
@@ -184,6 +190,14 @@
                 });
                 $( "#profileDialog" ).dialog({
                     dialogClass: "editProfile",
+                    autoOpen: false,
+                    show: false,
+                    hide: false,
+                    height: 500,
+                    width: 500
+                });
+                $( "#viewProfileDialog" ).dialog({
+                    dialogClass: "viewProfile",
                     autoOpen: false,
                     show: false,
                     hide: false,
