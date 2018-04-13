@@ -142,6 +142,7 @@ angular.module('myApp', [])
                                 if(data == 0){
                                     $scope.canSetEndDate = true;
                                     $scope.counterStarted = false;
+                                    $( "#finishTime" ).html("");
                                 } else {
                                     $scope.canSetEndDate = false; 
                                     var endDate = new Date(data);
@@ -155,6 +156,7 @@ angular.module('myApp', [])
                         $scope.counterStarted = false;
                         $scope.canSetEndDate = true;
                         $scope.eventEnded = false;
+                        $( "#finishTime" ).html("");
                     }
                 }
             });
@@ -165,6 +167,24 @@ angular.module('myApp', [])
             
             //Check if the eventDialog is opened or not
             if(isOpen){
+                
+                jQuery.ajax({
+                    url: "get_event.php",
+                    data: {
+                        "eventId": marker.eventId
+                    },
+                    type: "GET",
+                    success: function(data){
+                        if(JSON.parse(data)["typeid"] != 1){
+                            $scope.eventEnded = true;
+                            $scope.canSetEndDate = false;
+                            console.log(JSON.parse(data)["typeid"]);
+                        }else{
+                            $scope.eventEnded = false;
+                            console.log(JSON.parse(data)["typeid"]);
+                        }
+                    }
+                })
                 
                 // Check if the user has already voted for the current event
                 jQuery.ajax({
@@ -236,7 +256,7 @@ angular.module('myApp', [])
                                 if(timeDifference <= 0){
                                     $( "#finishTime" ).html("Event Ended");
                                     $scope.eventEnded = true;
-                                    $scope.populateMarkers();
+                                    $scope.populateMarkers(null);
                                     $scope.$apply();
                                     
                                 }else{ /* if the current date didn't still pass the end date of the event, calculate the remaining time and show it to          the user */
@@ -257,7 +277,7 @@ angular.module('myApp', [])
                                             clearInterval(intervalId);
                                             $( "#finishTime" ).html("Event Ended");
                                             $scope.eventEnded = true;
-                                            $scope.populateMarkers();
+                                            $scope.populateMarkers(null);
                                             $scope.$apply();
                                         }
                                         
@@ -269,6 +289,7 @@ angular.module('myApp', [])
                                 }
                             }else{ /* if the end date is not in the database, set the end date, store it in the database, and start counting the
                                         remaining time and show it to the user */
+                                $( "#finishTime" ).html("");
                                 currentDate = new Date();
                                 hours = currentDate.getHours() + parseInt(duration/3600, 10)
                                 minutes = currentDate.getMinutes() + parseInt((duration % 3600) / 60, 10)
@@ -294,7 +315,7 @@ angular.module('myApp', [])
                                 if(timeDifference <= 0){
                                     $( "#finishTime" ).html("Event Ended");
                                     $scope.eventEnded = true;
-                                    $scope.populateMarkers();
+                                    $scope.populateMarkers(null);
                                     $scope.$apply();
                                 }else{
                                     $scope.eventEnded = false;
@@ -314,7 +335,7 @@ angular.module('myApp', [])
                                             clearInterval(intervalId);
                                             $( "#finishTime" ).html("Event Ended");
                                             $scope.eventEnded = true;
-                                            $scope.populateMarkers();
+                                            $scope.populateMarkers(null);
                                             $scope.$apply();
                                         }
 
@@ -327,6 +348,8 @@ angular.module('myApp', [])
                             }
                         }
                     });   
+                }else{
+                    $( "#finishTime" ).html("Ahmed");
                 }
             }
         });
@@ -421,12 +444,19 @@ angular.module('myApp', [])
         $( "#editEventDialog" ).dialog({
             buttons:{
                 "Save": function(){
+                    var typeid;
+                    if($("#types option:selected").text() == "Event"){
+                        typeid = 1;
+                    }else if($("#types option:selected").text() == "Question"){
+                        typeid = 2;
+                    }
                     jQuery.ajax({
                         url: "edit_event.php",
                         data: {
                             "eventid": $scope.displayedEvent.eventid,
                             "title": $scope.displayedEvent.title,
-                            "description": $scope.displayedEvent.description
+                            "description": $scope.displayedEvent.description,
+                            "typeid": typeid
                         },
                         type: "POST",
                         success: function (data) {
