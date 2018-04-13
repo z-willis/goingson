@@ -9,7 +9,11 @@
 }
 
 *{
-    font-family: bodyFont;
+    font-family: Verdana;
+}
+
+.all {
+    background-color: #342d59;
 }
 
 .main {

@@ -133,7 +133,7 @@
         <link rel="stylesheet" href="style/normalize.css">
         <link rel="stylesheet" href="style/form.css">
     </head>
-    <body>
+    <body class="all">
     <br><br>
         <section class="main">
             <h1 class="title">GoingZ On</h1>

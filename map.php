@@ -126,7 +126,7 @@
                 <h3>Description</h3>
                 <textarea rows="5" ng-model="displayedEvent.description"></textarea>
                 <h3>Type</h3>
-                <select id="types" value="Event" ng-model="displayedEvent.typeId">
+                <select id="types" value="Event" ng-model="displayedEvent.typeString">
                     <option value="Event">Event</option>
                     <option value="Question">Question</option>
                 </select>
