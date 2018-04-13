@@ -534,7 +534,7 @@ angular.module('myApp', [])
         $("#viewProfileDialog").dialog("open");
         $("#viewProfileDialog").dialog({
             buttons:{
-                "Update": function () {
+                "Edit": function () {
                     $scope.updateProfile();
                     $("#viewProfileDialog").dialog("close");
                 },
@@ -676,6 +676,7 @@ angular.module('myApp', [])
                 },
                 
                 "Cancel": function(){
+                    $scope.viewProfile();
                     $( "#profileDialog" ).dialog( "close" );
                 }
             }
