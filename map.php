@@ -30,7 +30,16 @@
             <li class="tab-middle">
                 <h1>GoingZ On</h1>
             </li>
+            <li class="tab-right">
+                <h1>Legend</h1>
+            </li>
         </ul>
+        
+        <dl class="legend">
+            <dt><img src="images/markerPurple.png" /><span> Event</span></dt>
+            <dt><img src="images/markerYellow.png" /><span> Question</span></dt>
+        </dl>
+        
         
         <div id="mySidenav" class="sidenav">
             <a class="top" href="#" id="opener">Events</a>
@@ -71,19 +80,24 @@
             <p>{{displayedEvent.title}}</p>
             <h3>Description</h3>
             <p>{{displayedEvent.description}}</p>
-            <button ng-if="canVote && !eventEnded" ng-click="openVoteDialog(displayedEvent.eventid)">Verify Event</button>
             <div id="votingDialog" title="Verify Event">
                 <p>Is this event happening?</p>
             </div>
-            <button ng-if="displayedEvent.userid == currentUserId" ng-click="openEditDialog()">Edit Event</button>
-            <button ng-if="displayedEvent.userid == currentUserId && canSetEndDate && canSetDuration" ng-click="openTimerDialog(displayedEvent.eventid)">Set Duration</button>
+            
             <div id="eventTimer" title="Set Event Duration">
                 <h3>Duration of the event</h3>
                 <input type="number" id="hourVal" min="0" value="0" ><span> Hour(s)</span>
                 <input type="number" id="minVal" min="0" max="59" value="0"><span> Minute(s)</span>
                 <p>Please note that the event duration can't be changed once it is set.</p>
             </div>
-            <button ng-if="displayedEvent.userid == currentUserId && canSetEndDate && !counterStarted && !canSetDuration" ng-click="startCountdown()">Start Event</button>
+            
+            <div class="allbuttons">
+                <button ng-if="canVote && !eventEnded" ng-click="openVoteDialog(displayedEvent.eventid)">Verify Event</button>
+                <button ng-if="displayedEvent.userid == currentUserId" ng-click="openEditDialog()">Edit Event</button>
+                <button ng-if="displayedEvent.userid == currentUserId && canSetEndDate && canSetDuration" ng-click="openTimerDialog(displayedEvent.eventid)">Set Duration</button>
+                <button ng-if="displayedEvent.userid == currentUserId && canSetEndDate && !counterStarted && !canSetDuration" ng-click="startCountdown()">Start Event</button>
+            </div>
+            
             <div id="countdown">
                 <!--<span id="time"></span>-->
                 <h5 id="finishTime"></h5>
@@ -105,7 +119,7 @@
             </form>
         </div>
         
-        <div id="editEventDialog" title="Create Event">
+        <div id="editEventDialog" title="Edit Event">
             <form>
                 <h3>Title</h3>
                 <input type="text" ng-model="displayedEvent.title"/>
@@ -130,6 +144,10 @@
                 }
             }
 
+            $(".tab-right h1").hover(function(){
+                $(".legend").fadeToggle(1000);
+            });
+            
             $( function() {
                 $( "#eventsDialog" ).dialog({
                     dialogClass: "allEventsDialog",
