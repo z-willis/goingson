@@ -65,10 +65,6 @@
     color: #FCB912
 }
 
-.top-nav-bar .tab-right h1:hover{
-    display: block;
-}
-
 .top-nav-bar .tab-middle {
     text-align: center;
     display: inline-block;
