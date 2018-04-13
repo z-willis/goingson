@@ -33,7 +33,7 @@ angular.module('myApp', [])
     $scope.populateMarkers = function(userid){
         $scope.clearMarkers();
         jQuery.ajax({
-            url: "get_events.php",
+            url: "database_function.php?function=getEvents",
             type: "POST",
             data:{
                 "userFilter": userid
@@ -120,7 +120,7 @@ angular.module('myApp', [])
             
             // Check if the duration of an event is set or not
             jQuery.ajax({
-                url: "get_event_duration.php",
+                url: "database_function.php?function=getDuration",
                 data: {
                     "eventid": marker.eventId
                 },
@@ -131,7 +131,7 @@ angular.module('myApp', [])
                         console.log(data);
                         // Check if the event has a due date or not
                         jQuery.ajax({
-                            url: "get_event_endDate.php",
+                            url: "database_function.php?function=getEndDate",
                             data:{
                                 "eventid": marker.eventId
                             },
@@ -169,7 +169,7 @@ angular.module('myApp', [])
             if(isOpen){
                 
                 jQuery.ajax({
-                    url: "get_event.php",
+                    url: "database_function.php?function=getEvent",
                     data: {
                         "eventId": marker.eventId
                     },
@@ -178,17 +178,15 @@ angular.module('myApp', [])
                         if(JSON.parse(data)["typeid"] != 1){
                             $scope.eventEnded = true;
                             $scope.canSetEndDate = false;
-                            console.log(JSON.parse(data)["typeid"]);
                         }else{
                             $scope.eventEnded = false;
-                            console.log(JSON.parse(data)["typeid"]);
                         }
                     }
                 })
                 
                 // Check if the user has already voted for the current event
                 jQuery.ajax({
-                    url: "check_voting.php",
+                    url: "database_function.php?function=checkVoting",
                     data:{
                         "id": marker.eventId
                     },
@@ -226,7 +224,7 @@ angular.module('myApp', [])
         
         // get the duration of an event
         jQuery.ajax({
-            url: "get_event_duration.php",
+            url: "database_function.php?function=getDuration",
             data: {
                 "eventid": $scope.displayedEvent.eventid
             },
@@ -239,7 +237,7 @@ angular.module('myApp', [])
                     duration = data;
                     // get the event's end date
                     jQuery.ajax({
-                        url: "get_event_endDate.php",
+                        url: "database_function.php?function=getEndDate",
                         data: {
                             "eventid": $scope.displayedEvent.eventid
                         },
@@ -300,7 +298,7 @@ angular.module('myApp', [])
                                 endDate = new Date(year, month, day, hours, minutes, seconds);
 
                                 jQuery.ajax({
-                                    url: "set_event_endDate.php",
+                                    url: "database_function.php?function=setEndDate",
                                     data: {
                                         "eventid": $scope.displayedEvent.eventid,
                                         "endDate": endDate
@@ -363,7 +361,7 @@ angular.module('myApp', [])
             typeId = 2;
         }
         jQuery.ajax({
-            url: "create_event.php",
+            url: "database_function.php?function=createEvent",
             data:{
                 "title": title,
                 "description": desc,
@@ -385,7 +383,7 @@ angular.module('myApp', [])
 
     $scope.getEvent = function(eventId){
         jQuery.ajax({
-            url: "get_event.php",
+            url: "database_function.php?function=getEvent",
             type: "GET",
             data:{
                 "eventId": eventId
@@ -405,7 +403,7 @@ angular.module('myApp', [])
                 // Increase the number of votes for the event if the user chooses "YES"
                 "Yes": function(){
                     jQuery.ajax({
-                        url: "inc_vote.php",
+                        url: "database_function.php?function=incVote",
                         data:{
                             "id": eventId
                         },
@@ -422,7 +420,7 @@ angular.module('myApp', [])
                 // Decrease the number of votes for the event if the user chooses "NO"
                 "No": function() {
                     jQuery.ajax({
-                        url: "dec_vote.php",
+                        url: "database_function.php?function=decVote",
                         data: {
                             "id": eventId
                         },
@@ -449,9 +447,34 @@ angular.module('myApp', [])
                         typeid = 1;
                     }else if($("#types option:selected").text() == "Question"){
                         typeid = 2;
+                        
+                        // If the event type changes to a question make sure to delete the event's duration and endDate from the database so
+                        // that the timer doesn't start
+                        jQuery.ajax({
+                            url: "database_function.php?function=getEvent",
+                            data: {
+                                "eventId": $scope.displayedEvent.eventid
+                            },
+                            type: "GET",
+                            success: function(data){
+                                if(JSON.parse(data)["duration"] != "NULL" || JSON.parse(data)["endDate"] != "NULL"){
+                                    jQuery.ajax({
+                                        url: "database_function.php?function=update_endDate_duration",
+                                        data: {
+                                            "eventId": $scope.displayedEvent.eventid
+                                        },
+                                        type: "GET",
+                                        success: function(data){
+                                            console.log("Duration and endDate updated in the database.");
+                                        }
+                                    });
+                                }
+                            }
+                        });
                     }
+                    
                     jQuery.ajax({
-                        url: "edit_event.php",
+                        url: "database_function.php?function=editEvent",
                         data: {
                             "eventid": $scope.displayedEvent.eventid,
                             "title": $scope.displayedEvent.title,
@@ -467,7 +490,7 @@ angular.module('myApp', [])
                 },
                 "Delete": function(){
                     jQuery.ajax({
-                        url: "delete_event.php",
+                        url: "database_function.php?function=deleteEvent",
                         data: {
                             "eventid": $scope.displayedEvent.eventid
                         },
@@ -503,7 +526,7 @@ angular.module('myApp', [])
                     var duration = 60 * minutes + hours * 3600; // calculate the duration of the event in seconds
                     
                     jQuery.ajax({
-                        url: "set_event_duration.php",
+                        url: "database_function.php?function=setDuration",
                         data:{
                             "duration": duration,
                             "eventid": eventId
@@ -531,7 +554,7 @@ angular.module('myApp', [])
         
         // get the user's info from the database
         jQuery.ajax({
-            url: "get_user_info.php",
+            url: "database_function.php?function=getUserInfo",
             success: function(data){
                 $scope.userInfo = JSON.parse(data);
                 $( "#username" ).val($scope.userInfo.username);
@@ -549,7 +572,7 @@ angular.module('myApp', [])
         $( "#username" ).blur(function(){
 
             jQuery.ajax({
-                url: "check_username.php",
+                url: "database_function.php?function=checkUsername",
                 data: {
                     "username": $( "#username" ).val()
                 },
@@ -626,7 +649,7 @@ angular.module('myApp', [])
                     // make sure there are no errors in the error dialog box
                     if($( "#errorsDialog" ).children().length == 0){
                         jQuery.ajax({
-                            url: "edit_user_info.php",
+                            url: "database_function.php?function=editUserInfo",
                             data:{
                                 "username": username,
                                 "password": password,
