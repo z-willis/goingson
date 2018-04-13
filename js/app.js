@@ -392,6 +392,11 @@ angular.module('myApp', [])
             },
             success:function(data){
                 $scope.displayedEvent = JSON.parse(data);
+                if($scope.displayedEvent.typeid == "1"){
+                    $scope.displayedEvent.typeString = "Event";
+                } else if ($scope.displayedEvent.typeid == "2"){
+                    $scope.displayedEvent.typeString = "Question";
+                }
                 $scope.$apply();
             }
         });
@@ -439,6 +444,7 @@ angular.module('myApp', [])
     };
 
     $scope.openEditDialog = function(){
+        console.log($scope.displayedEvent.typeString);
         $( "#eventDialog" ).dialog( "close" );
         $( "#editEventDialog" ).dialog( "open" );
         $( "#editEventDialog" ).dialog({
@@ -461,9 +467,9 @@ angular.module('myApp', [])
                         type: "POST",
                         success: function (data) {
                             $("#editEventDialog").dialog("close");
+                            $scope.populateMarkers(null);
                         }
                     });
-                    $scope.populateMarkers(null);
                 },
                 "Delete": function(){
                     jQuery.ajax({
