@@ -50,7 +50,7 @@
             </form>
         </div>
         
-        <div id="errorsDialog" title="Update errors">
+        <div id="errorsDialog" title="Update Errors">
             
         </div>
 
@@ -59,44 +59,43 @@
         <div id="eventsDialog" title="Events">
             <ul class="events">
                 <li class="entry" ng-repeat="event in events">
-                    <img class="img" src="images/drawer.png" />
-                    <h3 class="title">{{event.title}}</h3>
-                    <p class="text">{{event.description}}</p>
+                    <!--<img class="img" src="images/drawer.png" /> -->
+                    <h3 class="title">Title: {{event.title}}</h3>
+                    <p class="text">Description: {{event.description}}</p>
                 </li>
             </ul>
         </div>
         
-        <div id="eventDialog" title="Event">
+        <div id="eventDialog" title="Event Details">
             <h3>Title</h3>
             <p>{{displayedEvent.title}}</p>
             <h3>Description</h3>
             <p>{{displayedEvent.description}}</p>
-            <button ng-if="canVote && !eventEnded" ng-click="openVoteDialog(displayedEvent.eventid)">Can You Verify This Event?</button>
+            <button ng-if="canVote && !eventEnded" ng-click="openVoteDialog(displayedEvent.eventid)">Verify Event</button>
             <div id="votingDialog" title="Verify Event">
                 <p>Is this event happening?</p>
             </div>
-            <button ng-if="displayedEvent.userid == currentUserId" ng-click="openEditDialog()">Edit</button>
-            <button ng-if="displayedEvent.userid == currentUserId && canSetEndDate && canSetDuration" ng-click="openTimerDialog(displayedEvent.eventid)">Set event duration</button>
+            <button ng-if="displayedEvent.userid == currentUserId" ng-click="openEditDialog()">Edit Event</button>
+            <button ng-if="displayedEvent.userid == currentUserId && canSetEndDate && canSetDuration" ng-click="openTimerDialog(displayedEvent.eventid)">Set Duration</button>
             <div id="eventTimer" title="Set Event Duration">
-                <p>Duration of the event:</p>
-                <input type="number" id="hourVal" min="0" value="0" > Hour(s)
-                <br/>
-                <input type="number" id="minVal" min="0" max="59" value="0"> Minute(s)
+                <h3>Duration of the event</h3>
+                <input type="number" id="hourVal" min="0" value="0" ><span> Hour(s)</span>
+                <input type="number" id="minVal" min="0" max="59" value="0"><span> Minute(s)</span>
                 <p>Please note that the event duration can't be changed once it is set.</p>
             </div>
             <button ng-if="displayedEvent.userid == currentUserId && canSetEndDate && !counterStarted && !canSetDuration" ng-click="startCountdown()">Start Event</button>
             <div id="countdown">
-                <span id="time"></span>
-                <span id="finishTime"></span>
+                <!--<span id="time"></span>-->
+                <h5 id="finishTime"></h5>
             </div>
         </div>
         
         <div id="createEventDialog" title="Create Event">
             <form>
                 <h3>Title</h3>
-                <input ng-model="newEventTitle"/>
+                <input type="text" ng-model="newEventTitle"/>
                 <h3>Description</h3>
-                <input ng-model="newEventDesc"/>
+                <textarea rows="5" ng-model="newEventDesc"></textarea>
                 <h3>Type</h3>
                 <select value="Event" ng-model="newEventType">
                     <option value="Event">Event</option>
@@ -109,15 +108,14 @@
         <div id="editEventDialog" title="Create Event">
             <form>
                 <h3>Title</h3>
-                <input ng-model="displayedEvent.title"/>
+                <input type="text" ng-model="displayedEvent.title"/>
                 <h3>Description</h3>
-                <input ng-model="displayedEvent.description"/>
+                <textarea rows="5" ng-model="displayedEvent.description"></textarea>
                 <h3>Type</h3>
-                <select value="Event" ng-model="displayedEvent.typeId">
+                <select id="types" value="Event" ng-model="displayedEvent.typeId">
                     <option value="Event">Event</option>
                     <option value="Question">Question</option>
                 </select>
-<!--                <input style="display: block;" ng-click="createEvent(newEventTitle, newEventDesc, newEventType)" type="submit"/>-->
             </form>
         </div>
         <script>
@@ -134,61 +132,71 @@
 
             $( function() {
                 $( "#eventsDialog" ).dialog({
+                    dialogClass: "allEventsDialog",
                     autoOpen: false,
                     show: false,
                     hide: false,
-                    height: 600,
-                    width: 600
+                    height: 500,
+                    width: 500
                 });
                 $( "#eventDialog" ).dialog({
+                    dialogClass: "eventDialog",
                     autoOpen: false,
                     show: false,
                     hide: false,
-                    height: 300,
-                    width: 300
+                    height: 500,
+                    width: 500
                 });
                 $( "#createEventDialog" ).dialog({
+                    dialogClass: "createDialog",
                     autoOpen: false,
                     show: false,
                     hide: false,
-                    height: 300,
-                    width: 300
+                    height: 500,
+                    width: 500
                 });
                 $( "#votingDialog" ).dialog({
+                    dialogClass: "votingDialog",
                     autoOpen: false,
                     show: false,
                     hide: false,
                     resizable: false,
                     draggable: false,
-                    modal: true
+                    modal: true,
+                    height: 250,
+                    width: 350
                 });
                 $( "#editEventDialog" ).dialog({
+                    dialogClass: "editEventDialog",
                     autoOpen: false,
                     show: false,
                     hide: false,
-                    height: 300,
-                    width: 300
+                    height: 500,
+                    width: 500
                 });
                 $( "#eventTimer" ).dialog({
+                    dialogClass: "setEventDuration",
                     autoOpen: false,
                     show: false,
                     hide: false,
-                    height: 300,
-                    width: 300
+                    height: 500,
+                    width: 500
                 });
                 $( "#profileDialog" ).dialog({
+                    dialogClass: "editProfile",
                     autoOpen: false,
                     show: false,
                     hide: false,
-                    height: 380,
-                    width: 300
+                    height: 500,
+                    width: 500
                 });
                 $( "#errorsDialog" ).dialog({
+                    dialogClass: "errorsDialog",
                     autoOpen: false,
                     show: false,
                     hide: false,
-                    height: 450,
-                    width: 350
+                    height: 500,
+                    width: 500
                 });
             } );
         </script>

@@ -8,6 +8,10 @@
     src: url("fonts/Myriad Pro Regular.ttf");
 }
 
+*{
+    box-sizing: border-box
+}
+
 .top-nav-bar {
     width: 100%;
     list-style-type: none;
@@ -90,6 +94,403 @@
     font-size: 36px;
     margin-left: 50px;
 }
+
+/* Start shared styling between different dialogs */
+
+.ui-widget.ui-widget-content{
+    border: 1px solid rgb(252,185,18);      /* yellow border around all the dialog boxes */
+}
+
+.allEventsDialog,
+.createDialog,
+.eventDialog,
+.votingDialog,
+.editEventDialog,
+.setEventDuration,
+.editProfile,
+.errorsDialog{
+    background-image: linear-gradient(to right, #2C1A59, #421D56);      
+    border-radius: 30px;                
+}
+
+.allEventsDialog,
+.createDialog,
+.eventDialog,
+.votingDialog,
+.editEventDialog,
+.setEventDuration,
+.editProfile,
+.errorsDialog{
+    padding-bottom: 20px;
+}
+
+.allEventsDialog .ui-dialog-content,
+.createDialog .ui-dialog-content,
+.eventDialog .ui-dialog-content,
+.votingDialog .ui-dialog-content,
+.editEventDialog .ui-dialog-content,
+.setEventDuration .ui-dialog-content,
+.editProfile .ui-dialog-content,
+.errorsDialog .ui-dialog-content,{
+    padding-top: 0;
+}
+
+.allEventsDialog .ui-dialog-titlebar,
+.createDialog .ui-dialog-titlebar,
+.eventDialog .ui-dialog-titlebar,
+.votingDialog .ui-dialog-titlebar,
+.editEventDialog .ui-dialog-titlebar,
+.setEventDuration .ui-dialog-titlebar,
+.editProfile .ui-dialog-titlebar,
+.errorsDialog .ui-dialog-titlebar{
+    background-color: transparent;                  
+    border: transparent;
+    color: rgb(252,185,18);
+    font-family: titleFont;
+    font-size: 40px;
+    text-align: center;
+}
+
+.allEventsDialog .ui-dialog-titlebar-close,
+.createDialog .ui-dialog-titlebar-close,
+.eventDialog .ui-dialog-titlebar-close,
+.votingDialog .ui-dialog-titlebar-close,
+.editEventDialog .ui-dialog-titlebar-close,
+.setEventDuration .ui-dialog-titlebar-close,
+.editProfile .ui-dialog-titlebar-close,
+.errorsDialog .ui-dialog-titlebar-close{
+    background-color: rgb(66,29,86);
+    border: none;
+}
+
+.allEventsDialog .ui-dialog-title,
+.createDialog .ui-dialog-title,
+.eventDialog .ui-dialog-title,
+.votingDialog .ui-dialog-title,
+.editEventDialog .ui-dialog-title,
+.setEventDuration .ui-dialog-title,
+.editProfile .ui-dialog-title,
+.errorsDialog .ui-dialog-title{
+    position: relative;
+    right: -5%;
+}
+
+.allEventsDialog .ui-dialog-content::-webkit-scrollbar,
+.createDialog .ui-dialog-content::-webkit-scrollbar,
+.eventDialog .ui-dialog-content::-webkit-scrollbar,
+.votingDialog .ui-dialog-content::-webkit-scrollbar,
+.editEventDialog .ui-dialog-content::-webkit-scrollbar,
+.setEventDuration .ui-dialog-content::-webkit-scrollbar,
+.editProfile .ui-dialog-content::-webkit-scrollbar,
+.errorsDialog .ui-dialog-content::-webkit-scrollbar{ 
+    width: 12px;
+}
+
+.allEventsDialog .ui-dialog-content::-webkit-scrollbar-thumb,
+.createDialog .ui-dialog-content::-webkit-scrollbar-thumb,
+.eventDialog .ui-dialog-content::-webkit-scrollbar-thumb,
+.votingDialog .ui-dialog-content::-webkit-scrollbar-thumb,
+.editEventDialog .ui-dialog-content::-webkit-scrollbar-thumb,
+.setEventDuration .ui-dialog-content::-webkit-scrollbar-thumb,
+.editProfile .ui-dialog-content::-webkit-scrollbar-thumb,
+.errorsDialog .ui-dialog-content::-webkit-scrollbar-thumb{ 
+    background-color: rgb(252,185,18);
+    border-radius: 20px;
+}
+
+.createDialog h3,
+.editEventDialog h3,
+.setEventDuration h3,
+.editProfile h3,
+.errorsDialog h3{
+    color: rgb(252,185,18);
+    font-family: titleFont;
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-top: 10px
+}
+
+.allEventsDialog .ui-dialog-buttonpane,
+.votingDialog .ui-dialog-buttonpane,
+.editEventDialog .ui-dialog-buttonpane,
+.setEventDuration .ui-dialog-buttonpane,
+.editProfile .ui-dialog-buttonpane,
+.errorsDialog .ui-dialog-buttonpane{
+    background-color: transparent;
+    border: none;
+}
+
+.allEventsDialog .ui-dialog-buttonpane .ui-dialog-buttonset,
+.votingDialog .ui-dialog-buttonpane .ui-dialog-buttonset,
+.editEventDialog .ui-dialog-buttonpane .ui-dialog-buttonset,
+.setEventDuration .ui-dialog-buttonpane .ui-dialog-buttonset,
+.editProfile .ui-dialog-buttonpane .ui-dialog-buttonset,
+.errorsDialog .ui-dialog-buttonpane .ui-dialog-buttonset{
+    float: none;
+    text-align: center
+}
+
+.allEventsDialog .ui-dialog-buttonpane button,
+.votingDialog .ui-dialog-buttonpane button,
+.votingDialog .ui-dialog-buttonpane button,
+.editEventDialog .ui-dialog-buttonpane button,
+.setEventDuration .ui-dialog-buttonpane button,
+.editProfile .ui-dialog-buttonpane button,
+.errorsDialog .ui-dialog-buttonpane button{
+    cursor: pointer;
+    background-color: rgb(252,185,18);
+    border: none;
+    border-radius: 30px;
+    width: 100px;
+    padding: 10px;
+    font-family: titleFont;
+    font-size: 20px;    
+    margin-left: 22px;
+    outline: 0;
+}
+
+/* End shared styling between different dialogs */
+
+/* Start all event dialog styling */
+
+.allEventsDialog .events{
+    margin-top: 0;
+}
+
+.allEventsDialog .entry{
+    background-color: rgb(252,185,18);
+    margin-bottom: 10px;
+    border-radius: 30px;
+    margin-left: -27px
+}
+
+.allEventsDialog .entry h3,
+.allEventsDialog .entry p{
+    margin-left: 20px;
+}
+
+.allEventsDialog .entry h3{
+    font-family: titleFont;
+    font-size: 32px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.allEventsDialog .entry p{
+    font-family: bodyFont;
+    font-size: 18px;
+    margin-bottom: 2px;
+    margin-top: 0;
+}
+
+.allEventsDialog .ui-dialog-buttonpane button{
+    width: 125px;
+    padding: 15px;
+}
+
+/* End all event dialog styling */
+
+/* Start create event dialog styling */
+
+.createDialog h3{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.createDialog input[type=text],
+.createDialog select,
+.createDialog textarea{
+    width: 230px;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid rgb(252,185,18);
+    font-family: bodyFont;
+}
+
+.createDialog textarea{
+    resize: none
+}
+
+.createDialog input[type=submit]{
+    border-radius: 30px;
+    background-color: rgb(252,185,18);
+    color: rgb(66,29,86);
+    border: 2px solid rgb(66,29,86);
+    padding: 15px;
+    font-family: titleFont;
+    font-size: 20px;
+    min-width: 153px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+/* End create event dialog styling */
+
+/* Start event dialog styling */
+
+.eventDialog h3{
+    color: rgb(252,185,18);
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.eventDialog p{
+    color: rgb(252,185,18);
+    font-family: bodyFont;
+    font-size: 24px;
+    margin-bottom: 24px;
+    margin-top: 0;
+}
+
+#finishTime{
+    color: rgb(252,185,18);
+    font-family: bodyFont;
+    font-size: 24px;
+    position: relative;
+    top: -118px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.eventDialog button:not(.ui-button){
+    border-radius: 30px;
+    background-color: rgb(252,185,18);
+    color: rgb(66,29,86);
+    border: 2px solid rgb(66,29,86);
+    padding: 15px;
+    margin-top: 68px;
+    font-family: titleFont;
+    font-size: 20px;
+    min-width: 150px;
+    cursor: pointer;
+    outline: 0;
+}
+
+/* End event dialog styling */
+
+/* Start voting dialog styling */
+
+.votingDialog .ui-dialog-titlebar{
+    font-size: 33px;
+}
+
+.votingDialog p{
+    color: rgb(252,185,18);
+    font-family: bodyFont;
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 0;
+}
+
+/* End voting dialog styling */
+
+/* Start edit event dialog styling */
+
+.editEventDialog h3{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.editEventDialog input[type=text],
+.editEventDialog textArea,
+.editEventDialog select{
+    width: 230px;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid rgb(252,185,18);
+    font-family: bodyFont;
+}
+
+.editEventDialog textArea{
+    resize: none;
+}
+
+/* End edit event dialog styling */
+
+/* Start set event duration styling */
+.setEventDuration .ui-dialog-title{
+    font-size: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.setEventDuration h3{
+    font-size: 26px;
+    margin-bottom: 30px;
+    margin-top: 10px
+}
+
+.setEventDuration input[type=number]{
+    width: 230px;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid rgb(252,185,18);
+}
+
+.setEventDuration span{
+    color: rgb(252,185,18);
+    margin-right: 63px;
+    font-family: bodyFont;
+    font-size: 22px;
+}
+
+.setEventDuration p{
+    color: rgb(252,185,18);
+    text-align: center;
+    margin-top: 105px;
+    font-family: bodyFont;
+    font-size: 22px;
+}
+
+/* End set event duration styling */
+
+/* Start edit profile styling */
+
+.editProfile .ui-dialog-title{
+    font-size: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.editProfile h3{
+    font-size: 26px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.editProfile input[type=text],
+.editProfile input[type=password]{
+    width: 230px;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid rgb(252,185,18);
+    font-family: bodyFont;
+}
+
+/* End edit profile dialog styling */
+
+/* Start errors dialog styling */
+
+.errorsDialog .ui-dialog-title{
+    font-size: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.errorsDialog h3{
+    font-size: 26px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.errorsDialog p{
+    color: rgb(252,185,18);
+    font-family: bodyFont;
+    font-size: 20px
+}
+
+/* End errors dialog styling */
+
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
