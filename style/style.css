@@ -28,15 +28,50 @@
     float: right;
     display: inline-block;
     color: #FCB912;
-    text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    font-family: titleFont;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+.legend{
+    display: none;
+    background-color: #421D56;
+    width: 190px;
+    height: 150px;
+    position: absolute;
+    top: 63px;
+    right: 0;
+    z-index: 9999;
+}
+
+.legend dt:first-child{
+    border-bottom: 3px solid #FCB912;
+}
+
+.legend dt img{
+    margin-left: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.legend dt span{
+    position: relative;
+    top: -23px;
+    right: -15px;
+    font-family: bodyFont;
+    font-size: 22px;
+    color: #FCB912
 }
 
 .top-nav-bar .tab-middle {
     text-align: center;
+    display: inline-block;
     color: #FCB912;
     font-family: titleFont;
+    position: relative;
+    right: -41%;
 }
 
 .top-nav-bar .tab-left {
@@ -262,6 +297,12 @@
     outline: 0;
 }
 
+.allbuttons{
+    display: flex;
+    justify-content: center;
+    margin-top: 120px;
+}
+
 /* End shared styling between different dialogs */
 
 /* Start all event dialog styling */
@@ -371,7 +412,6 @@
     color: rgb(66,29,86);
     border: 2px solid rgb(66,29,86);
     padding: 15px;
-    margin-top: 68px;
     font-family: titleFont;
     font-size: 20px;
     min-width: 150px;
