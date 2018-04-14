@@ -145,7 +145,7 @@
             }
 
             $(".tab-right h1").hover(function(){
-                $(".legend").fadeToggle(1000);
+                $(".legend").fadeToggle(100);
             });
             
             $( function() {
