@@ -554,7 +554,7 @@ angular.module('myApp', [])
     
     $scope.viewProfile = function(){
         jQuery.ajax({
-            url: "get_user_info.php",
+            url: "database_function.php?function=getUserInfo",
             success: function(data){
                 $scope.userInfo = JSON.parse(data);
                 $scope.$apply();
