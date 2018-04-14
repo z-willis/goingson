@@ -552,23 +552,50 @@ angular.module('myApp', [])
         });
     };
     
+    $scope.viewProfile = function(){
+        jQuery.ajax({
+            url: "database_function.php?function=getUserInfo",
+            success: function(data){
+                $scope.userInfo = JSON.parse(data);
+                $scope.$apply();
+            }
+        });
+        $("#viewProfileDialog").dialog("open");
+        $("#viewProfileDialog").dialog({
+            buttons:{
+                "Edit": function () {
+                    $scope.updateProfile();
+                    $("#viewProfileDialog").dialog("close");
+                },
+                "Close": function () {
+                    $("#viewProfileDialog").dialog("close");
+                }
+            }
+        });
+    };
     
     // The function the update the user's infromation in the database
     $scope.updateProfile = function(){
         
-        var username = "", password = "", email = "", usernameExists = true, isValidEmail = true;        
+        var username = "", password = "", email = "", name = "", usernameExists = true, isValidEmail = true;
         
         // get the user's info from the database
         jQuery.ajax({
             url: "database_function.php?function=getUserInfo",
             success: function(data){
                 $scope.userInfo = JSON.parse(data);
+                if($scope.userInfo.name) {
+                    $("#name").val($scope.userInfo.name);
+                } else {
+                    $("#name").val("");
+                }
                 $( "#username" ).val($scope.userInfo.username);
                 $( "#password" ).val(""); // make the password empty because it is encrypted in the database and can't be decrypted
                 $( "#email" ).val($scope.userInfo.email);
                 
                 username = $scope.userInfo.username;
                 email = $scope.userInfo.email;
+                name = $scope.userInfo.name;
             }
         });
         
@@ -598,6 +625,10 @@ angular.module('myApp', [])
         $( "#password" ).blur(function(){
                 password = $( "#password" ).val();
         });
+
+        $( "#name" ).blur(function(){
+            name = $( "#name" ).val();
+        });
         
         $( "#email" ).blur(function(){
             
@@ -613,7 +644,7 @@ angular.module('myApp', [])
         
         $( "#profileDialog" ).dialog({
             buttons: {
-                "Update": function(){
+                "Save": function(){
                 
                     // Check the length of the username
                     if(username.length < 5){
@@ -657,12 +688,14 @@ angular.module('myApp', [])
                         jQuery.ajax({
                             url: "database_function.php?function=editUserInfo",
                             data:{
+                                "name": name,
                                 "username": username,
                                 "password": password,
                                 "email": email
                             },
                             type: "POST",
                             success: function(data){
+                                $scope.viewProfile();
                                 $( "#profileDialog" ).dialog( "close" );
                             }
                         });
@@ -683,6 +716,7 @@ angular.module('myApp', [])
                 },
                 
                 "Cancel": function(){
+                    $scope.viewProfile();
                     $( "#profileDialog" ).dialog( "close" );
                 }
             }

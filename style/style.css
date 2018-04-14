@@ -144,6 +144,7 @@
 .editEventDialog,
 .setEventDuration,
 .editProfile,
+.viewProfile,
 .errorsDialog{
     background-image: linear-gradient(to right, #2C1A59, #421D56);      
     border-radius: 30px;                
@@ -156,6 +157,7 @@
 .editEventDialog,
 .setEventDuration,
 .editProfile,
+.viewProfile,
 .errorsDialog{
     padding-bottom: 20px;
 }
@@ -167,7 +169,8 @@
 .editEventDialog .ui-dialog-content,
 .setEventDuration .ui-dialog-content,
 .editProfile .ui-dialog-content,
-.errorsDialog .ui-dialog-content,{
+.viewProfile .ui-dialog-content,
+.errorsDialog .ui-dialog-content{
     padding-top: 0;
 }
 
@@ -178,6 +181,7 @@
 .editEventDialog .ui-dialog-titlebar,
 .setEventDuration .ui-dialog-titlebar,
 .editProfile .ui-dialog-titlebar,
+.viewProfile .ui-dialog-titlebar,
 .errorsDialog .ui-dialog-titlebar{
     background-color: transparent;                  
     border: transparent;
@@ -194,6 +198,7 @@
 .editEventDialog .ui-dialog-titlebar-close,
 .setEventDuration .ui-dialog-titlebar-close,
 .editProfile .ui-dialog-titlebar-close,
+.viewProfile .ui-dialog-titlebar-close,
 .errorsDialog .ui-dialog-titlebar-close{
     background-color: rgb(66,29,86);
     border: none;
@@ -206,6 +211,7 @@
 .editEventDialog .ui-dialog-title,
 .setEventDuration .ui-dialog-title,
 .editProfile .ui-dialog-title,
+.viewProfile .ui-dialog-title,
 .errorsDialog .ui-dialog-title{
     position: relative;
     right: -5%;
@@ -218,6 +224,7 @@
 .editEventDialog .ui-dialog-content::-webkit-scrollbar,
 .setEventDuration .ui-dialog-content::-webkit-scrollbar,
 .editProfile .ui-dialog-content::-webkit-scrollbar,
+.viewProfile .ui-dialog-content::-webkit-scrollbar,
 .errorsDialog .ui-dialog-content::-webkit-scrollbar{ 
     width: 12px;
 }
@@ -229,6 +236,7 @@
 .editEventDialog .ui-dialog-content::-webkit-scrollbar-thumb,
 .setEventDuration .ui-dialog-content::-webkit-scrollbar-thumb,
 .editProfile .ui-dialog-content::-webkit-scrollbar-thumb,
+.viewProfile .ui-dialog-content::-webkit-scrollbar-thumb,
 .errorsDialog .ui-dialog-content::-webkit-scrollbar-thumb{ 
     background-color: rgb(252,185,18);
     border-radius: 20px;
@@ -238,6 +246,7 @@
 .editEventDialog h3,
 .setEventDuration h3,
 .editProfile h3,
+.viewProfile h3,
 .errorsDialog h3{
     color: rgb(252,185,18);
     font-family: titleFont;
@@ -251,6 +260,7 @@
 .editEventDialog .ui-dialog-buttonpane,
 .setEventDuration .ui-dialog-buttonpane,
 .editProfile .ui-dialog-buttonpane,
+.viewProfile .ui-dialog-buttonpane,
 .errorsDialog .ui-dialog-buttonpane{
     background-color: transparent;
     border: none;
@@ -261,6 +271,7 @@
 .editEventDialog .ui-dialog-buttonpane .ui-dialog-buttonset,
 .setEventDuration .ui-dialog-buttonpane .ui-dialog-buttonset,
 .editProfile .ui-dialog-buttonpane .ui-dialog-buttonset,
+.viewProfile .ui-dialog-buttonpane .ui-dialog-buttonset,
 .errorsDialog .ui-dialog-buttonpane .ui-dialog-buttonset{
     float: none;
     text-align: center
@@ -272,6 +283,7 @@
 .editEventDialog .ui-dialog-buttonpane button,
 .setEventDuration .ui-dialog-buttonpane button,
 .editProfile .ui-dialog-buttonpane button,
+.viewProfile .ui-dialog-buttonpane button,
 .errorsDialog .ui-dialog-buttonpane button{
     cursor: pointer;
     background-color: rgb(252,185,18);
@@ -509,6 +521,26 @@
 }
 
 /* End edit profile dialog styling */
+
+/* Start view profile dialog styling */
+
+.viewProfile h1{
+    font-size: 30px;
+    color: rgb(252,185,18);
+}
+
+.viewProfile h3{
+    font-size: 20px;
+}
+
+.viewProfile img{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    overflow:hidden;
+}
+
+/* End view profile dialog styling */
 
 /* Start errors dialog styling */
 
