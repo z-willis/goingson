@@ -31,7 +31,7 @@
                 <h1>GoingZ On</h1>
             </li>
             <li class="tab-right">
-                <h1>Legend</h1>
+                <image src="images/legend.png"></image>
             </li>
         </ul>
         
@@ -148,7 +148,7 @@
                 }
             }
 
-            $(".tab-right h1").hover(function(){
+            $(".tab-right img").hover(function(){
                 $(".legend").fadeToggle(100);
             });
             
