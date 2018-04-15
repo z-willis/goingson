@@ -134,7 +134,6 @@
         <link rel="stylesheet" href="style/form.css">
     </head>
     <body class="all">
-    <br><br>
         <section class="main">
             <h1 class="title">GoingZ On</h1>
             <p class="body">GoingZ On is an app that deserves a better description, but I'm not creative enough to make one.</p>
@@ -190,6 +189,8 @@
             </section>
         </section>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="js/form.js"></script>
+        <!--<script src="js/oldform.js"></script>-->
     </body>
 </html>
