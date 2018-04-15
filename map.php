@@ -61,29 +61,26 @@
             </form>
         </div>
 
-        <div id="viewProfileDialog" title="Profile">
+        <div id="viewProfileDialog" title="Profile" style="display:none">
             <img src="images/default.png">
             <h1>{{userInfo.name}} - {{userInfo.username}}</h1>
             <h3>{{userInfo.email}}</h3>
         </div>
         
-        <div id="errorsDialog" title="Update Errors">
-            
-        </div>
+        <div id="errorsDialog" title="Update Errors"></div>
 
         <div id="map"></div>
 
-        <div id="eventsDialog" title="Events">
+        <div id="eventsDialog" title="Events" style="display:none">
             <ul class="events">
                 <li class="entry" ng-repeat="event in events">
-                    <!--<img class="img" src="images/drawer.png" /> -->
                     <h3 class="title">Title: {{event.title}}</h3>
                     <p class="text">Description: {{event.description}}</p>
                 </li>
             </ul>
         </div>
         
-        <div id="eventDialog" title="Event Details">
+        <div id="eventDialog" title="Event Details" style="display:none">
             <h3>Title</h3>
             <p>{{displayedEvent.title}}</p>
             <h3>Description</h3>
@@ -92,7 +89,7 @@
                 <p>Is this event happening?</p>
             </div>
             
-            <div id="eventTimer" title="Set Event Duration">
+            <div id="eventTimer" title="Set Event Duration" style="display:none">
                 <h3>Duration of the event</h3>
                 <input type="number" id="hourVal" min="0" value="0" ><span> Hour(s)</span>
                 <input type="number" id="minVal" min="0" max="59" value="0"><span> Minute(s)</span>
@@ -107,12 +104,11 @@
             </div>
             
             <div id="countdown">
-                <!--<span id="time"></span>-->
                 <h5 id="finishTime"></h5>
             </div>
         </div>
         
-        <div id="createEventDialog" title="Create Event">
+        <div id="createEventDialog" title="Create Event" style="display:none">
             <form>
                 <h3>Title</h3>
                 <input type="text" ng-model="newEventTitle"/>
@@ -127,7 +123,7 @@
             </form>
         </div>
         
-        <div id="editEventDialog" title="Edit Event">
+        <div id="editEventDialog" title="Edit Event" style="display:none">
             <form>
                 <h3>Title</h3>
                 <input type="text" ng-model="displayedEvent.title"/>

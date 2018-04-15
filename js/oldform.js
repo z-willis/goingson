@@ -19,34 +19,24 @@ var passLength = 5,
 $(document).ready(function(){
    
     'use strict';
-    
-    $(".all").css("height", window.innerHeight);
         
     // Switch between the login form and the create account form
     $(".login").click(function(){
-        $(".main").animate({
-            height: "447px"
-        },600);
         loginForm.siblings().css("display", "none");
-        loginForm.fadeIn(1500);
+        loginForm.fadeIn(1000);
     });
     
     $(".create-account").click(function(){
-        $(".main").animate({
-            height: "580px"
-        },600);
         createAccountForm.siblings().css("display", "none");
-        createAccountForm.fadeIn(1500);
+        createAccountForm.fadeIn(1000);
     });
     
     // Activate the login button only when the user enters all the information needed
     loginList.keyup(function(){
         if(loginUser.val().length >= userLength && loginPass.val().length >= passLength){
             loginSubmit.removeAttr("disabled");
-            loginSubmit.css("cursor", "pointer");
         }else{
             loginSubmit.attr("disabled", "disabled");
-            loginSubmit.css("cursor", "not-allowed");
         } 
     });
         
@@ -54,10 +44,8 @@ $(document).ready(function(){
     createAccountList.keyup(function(){
         if(createAccountUser.val().length >= userLength && createAccountPass.val().length >= passLength && createAccountPass.val() == repeatPass.val() && validateEmail(createAccountEmail.val())){
             createAccountSubmit.removeAttr("disabled");
-            createAccountSubmit.css("cursor", "pointer");
         }else{
             createAccountSubmit.attr("disabled", "disabled");
-            createAccountSubmit.css("cursor", "not-allowed");
         } 
     });
     
@@ -97,9 +85,9 @@ $(document).ready(function(){
     // Show a message to the user to indicate if the passwords match or not
     repeatPass.change(function(){        
         if($(this).val() == createAccountPass.val()){
-            $(this).next().text("Passwords match").show("slide", {direction: "left"}, 1000).delay(500).hide("slide", {direction: "left"}, 1000);
+            $(this).next().text("Passwords match").show("slide", {direction: "left"}, 1000).hide("slide", {direction: "left"}, 2500);
         }else{
-            $(this).next().text("Passwords don't match").show("slide", {direction: "left"}, 1000).delay(500).hide("slide", {direction: "left"}, 1000);
+            $(this).next().text("Passwords don't match").show("slide", {direction: "left"}, 1000).hide("slide", {direction: "left"}, 2500);
         }
     });
     
@@ -125,12 +113,12 @@ $(document).ready(function(){
     
     // Show a error message to the user if something is wrong with the login
     if(!loginErrors.text() == ""){
-        loginErrors.slideDown(450).delay(1250).slideUp(450);
+        loginErrors.css("display", "block").fadeOut(2500);
     }
     
     // Show a success message to the user a successfully creating an account
     if(!createAccountSuccess.text() == ""){
-        createAccountSuccess.slideDown(450).delay(1500).slideUp(450);
+        createAccountSuccess.css("display", "block").fadeOut(2500);
     }
     
 });
@@ -150,9 +138,9 @@ function checkAvailability() {
         type: "POST",
         success:function(data){
             if(data > 0){
-                createAccountUser.next().next().text("Username already exists").show("slide", {direction: "left"}, 1000).delay(500).hide("slide", {direction: "left"}, 1000);
+                createAccountUser.next().next().text("Username already exists").show("slide", {direction: "left"}, 1000).hide("slide", {direction: "left"}, 2500);
             }else{
-                createAccountUser.next().next().text("Username available").show("slide", {direction: "left"}, 1000).delay(500).hide("slide", {direction: "left"}, 1000);
+                createAccountUser.next().next().text("Username available").show("slide", {direction: "left"}, 1000).hide("slide", {direction: "left"}, 2500);
             }
         }
     });

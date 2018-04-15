@@ -118,6 +118,22 @@ angular.module('myApp', [])
         marker.addListener('click', function() {
             $scope.getEvent(marker.eventId);
             
+            jQuery.ajax({
+                url: "database_function.php?function=getEvent",
+                data: {
+                    "eventId": marker.eventId
+                },
+                type: "GET",
+                success: function(data){
+                    if(JSON.parse(data)["typeid"] != 1){
+                        $scope.eventEnded = true;
+                        $scope.canSetEndDate = false;
+                    }else{
+                        $scope.eventEnded = false;
+                    }
+                }
+            });
+            
             // Check if the duration of an event is set or not
             jQuery.ajax({
                 url: "database_function.php?function=getDuration",
@@ -128,7 +144,6 @@ angular.module('myApp', [])
                 success: function(data){
                     if(data != 0){
                         $scope.canSetDuration = false;
-                        console.log(data);
                         // Check if the event has a due date or not
                         jQuery.ajax({
                             url: "database_function.php?function=getEndDate",
@@ -168,21 +183,7 @@ angular.module('myApp', [])
             //Check if the eventDialog is opened or not
             if(isOpen){
                 
-                jQuery.ajax({
-                    url: "database_function.php?function=getEvent",
-                    data: {
-                        "eventId": marker.eventId
-                    },
-                    type: "GET",
-                    success: function(data){
-                        if(JSON.parse(data)["typeid"] != 1){
-                            $scope.eventEnded = true;
-                            $scope.canSetEndDate = false;
-                        }else{
-                            $scope.eventEnded = false;
-                        }
-                    }
-                })
+            
                 
                 // Check if the user has already voted for the current event
                 jQuery.ajax({
@@ -623,7 +624,7 @@ angular.module('myApp', [])
         });
         
         $( "#password" ).blur(function(){
-                password = $( "#password" ).val();
+            password = $( "#password" ).val();
         });
 
         $( "#name" ).blur(function(){
