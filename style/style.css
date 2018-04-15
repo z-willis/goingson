@@ -33,7 +33,6 @@
     text-decoration: none;
     font-family: titleFont;
     padding-bottom: 0;
-    padding-top: 0;
 }
 
 .legend{
@@ -94,7 +93,7 @@
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 1; /* Stay on top */
-    top: 79.49px; /* Stay at the top */
+    top: 68px; /* Stay at the top */
     left: 0;
     background-color: #2C1A59;
     /*background-image: linear-gradient(to right, #2C1A59, #421D56);*/
@@ -121,15 +120,6 @@
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
     background-color: #342d59;
-}
-
-/* Position and style the close button (top right corner) */
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
 }
 
 /* Start shared styling between different dialogs */
