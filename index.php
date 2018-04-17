@@ -129,7 +129,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Login</title>
+        <title>GoingZ On - Login</title>
         <link rel="stylesheet" href="style/normalize.css">
         <link rel="stylesheet" href="style/form.css">
     </head>

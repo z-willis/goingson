@@ -29,7 +29,7 @@ $(document).ready(function(){
         },600);
         loginForm.siblings().css("display", "none");
         loginForm.fadeIn(1500);
-        document.title = "Login";
+        document.title = "GoingZ On - Login";
     });
     
     $(".create-account").click(function(){
@@ -38,7 +38,7 @@ $(document).ready(function(){
         },600);
         createAccountForm.siblings().css("display", "none");
         createAccountForm.fadeIn(1500);
-        document.title = "Sign Up";
+        document.title = "GoingZ On - Sign Up";
     });
     
     // Activate the login button only when the user enters all the information needed
