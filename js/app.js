@@ -352,7 +352,7 @@ angular.module('myApp', [])
                 }
             }
         });
-    }
+    };
     
     $scope.createEvent = function (title, desc, type) {
         var typeId;
@@ -443,7 +443,6 @@ angular.module('myApp', [])
     };
 
     $scope.openEditDialog = function(){
-        console.log($scope.displayedEvent.typeString);
         $( "#eventDialog" ).dialog( "close" );
         $( "#editEventDialog" ).dialog( "open" );
         $( "#editEventDialog" ).dialog({
@@ -730,36 +729,33 @@ angular.module('myApp', [])
             type: "GET",
             success: function (data) {
                 $scope.displayedAnswers = JSON.parse(data);
-            }
-        });
-    };
-
-    $scope.saveAnswer = function(){
-        jQuery.ajax({
-            url: "database_function.php?function=answerQuestion",
-            data: {
-                "eventid": $scope.displayedEvent.eventid,
-                "userid": $scope.currentUserId,
-                "answertext": $scope.newAnswer //Or however the answer text will be passed
-            },
-            type: "POST",
-            success: function (data) {
-                $("#editEventDialog").dialog("close");
-                $scope.populateMarkers(null);
+                $scope.$apply();
             }
         });
     };
     
     $scope.openAnswerDialog = function(){
         $("#answerDialog").dialog("open");
+        $scope.getAnswers($scope.displayedEvent.eventid);
         $("#answerDialog").dialog({
             buttons: {
                 "Submit": function(){
-                    
+                    jQuery.ajax({
+                        url: "database_function.php?function=answerQuestion",
+                        data: {
+                            "eventid": $scope.displayedEvent.eventid,
+                            "userid": $scope.currentUserId,
+                            "answertext": $scope.newAnswer //Or however the answer text will be passed
+                        },
+                        type: "POST",
+                        success: function (data) {
+                            $scope.getAnswers($scope.displayedEvent.eventid);
+                        }
+                    });
                 }
             }
         });
-    }
+    };
     
     // Validate the update email that the user enters
     function validateEmail(email){
@@ -804,7 +800,6 @@ angular.module('myApp', [])
             },
             type: "POST",
             success: function (data) {
-                console.log(data);
                 if (data == 1) {
                     $window.location.reload();
                 } else {

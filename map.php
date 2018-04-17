@@ -80,7 +80,7 @@
             </ul>
         </div>
         
-        <div id="eventDialog" title="Event Details" style="display:none">
+        <div id="eventDialog" title="Details" style="display:none">
             <h3>Title</h3>
             <p>{{displayedEvent.title}}</p>
             <h3>Description</h3>
@@ -101,7 +101,7 @@
                 <button ng-if="displayedEvent.userid == currentUserId" ng-click="openEditDialog()">Edit Event</button>
                 <button ng-if="displayedEvent.userid == currentUserId && canSetEndDate && canSetDuration && displayedEvent.typeid == '1'" ng-click="openTimerDialog(displayedEvent.eventid)">Set Duration</button>
                 <button ng-if="displayedEvent.userid == currentUserId && canSetEndDate && !counterStarted && !canSetDuration && displayedEvent.typeid == '1'" ng-click="startCountdown()">Start Event</button>
-                <button ng-if="displayedEvent.typeid == '2'" ng-click="openAnswerDialog()">Answer</button>
+                <button ng-if="displayedEvent.typeid == '2'" ng-click="openAnswerDialog()">Answers</button>
             </div>
             
             <div id="countdown">
@@ -140,12 +140,12 @@
         
         <div id="answerDialog" title="Answers" style="display:none">
             <ul class="existingAnswers">
-                <li class="entry" ng-repeat="answer in answers">
-                    <h3>Answer by: </h3>
-                    <p>Answer placed here</p>
+                <li class="entry" ng-repeat="answer in displayedAnswers">
+                    <h3>{{answer.username}}: </h3>
+                    <p>{{answer.answertext}}</p>
                 </li>
             </ul>
-            <textarea></textarea>
+            <textarea ng-model="newAnswer"></textarea>
         </div>
         
         <script>

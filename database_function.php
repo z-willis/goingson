@@ -201,7 +201,7 @@
 
     }else if($_GET["function"] == "getAnswers"){
 
-        $query = 'SELECT * FROM answers WHERE eventid = ' . $_POST['eventid'];
+        $query = 'SELECT answers.*, user.username FROM answers JOIN user ON answers.userid = user.userid WHERE eventid = ' . $_GET['eventid'];
         $stmt = $con->prepare($query);
         $stmt->execute();
 
