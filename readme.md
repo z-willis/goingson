@@ -79,7 +79,7 @@ CREATE TABLE answers(
     answertext varchar(500),
     primary key(answerid),
     foreign key(userid) references user(userid),
-	foreign key(eventid) references events(eventid)
+    foreign key(eventid) references events(eventid)
     );
 ```
 
