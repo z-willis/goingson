@@ -161,7 +161,7 @@
             }
 
             $(".tab-right img").hover(function(){
-                $(".legend").fadeToggle(100);
+                $(".legend").slideToggle();
             });
             
             $( function() {
