@@ -133,6 +133,7 @@
 .eventDialog,
 .votingDialog,
 .editEventDialog,
+.answerDialog,
 .setEventDuration,
 .editProfile,
 .viewProfile,
@@ -147,6 +148,7 @@
 .eventDialog .ui-dialog-content,
 .votingDialog .ui-dialog-content,
 .editEventDialog .ui-dialog-content,
+.answerDialog .ui-dialog-content,
 .setEventDuration .ui-dialog-content,
 .editProfile .ui-dialog-content,
 .viewProfile .ui-dialog-content,
@@ -159,6 +161,7 @@
 .eventDialog .ui-dialog-titlebar,
 .votingDialog .ui-dialog-titlebar,
 .editEventDialog .ui-dialog-titlebar,
+.answerDialog .ui-dialog-titlebar,
 .setEventDuration .ui-dialog-titlebar,
 .editProfile .ui-dialog-titlebar,
 .viewProfile .ui-dialog-titlebar,
@@ -176,6 +179,7 @@
 .eventDialog .ui-dialog-titlebar-close,
 .votingDialog .ui-dialog-titlebar-close,
 .editEventDialog .ui-dialog-titlebar-close,
+.answerDialog .ui-dialog-titlebar-close,
 .setEventDuration .ui-dialog-titlebar-close,
 .editProfile .ui-dialog-titlebar-close,
 .viewProfile .ui-dialog-titlebar-close,
@@ -189,6 +193,7 @@
 .eventDialog .ui-dialog-title,
 .votingDialog .ui-dialog-title,
 .editEventDialog .ui-dialog-title,
+.answerDialog .ui-dialog-title,
 .setEventDuration .ui-dialog-title,
 .editProfile .ui-dialog-title,
 .viewProfile .ui-dialog-title,
@@ -202,6 +207,7 @@
 .eventDialog .ui-dialog-content::-webkit-scrollbar,
 .votingDialog .ui-dialog-content::-webkit-scrollbar,
 .editEventDialog .ui-dialog-content::-webkit-scrollbar,
+.answerDialog .ui-dialog-content::-webkit-scrollbar,
 .setEventDuration .ui-dialog-content::-webkit-scrollbar,
 .editProfile .ui-dialog-content::-webkit-scrollbar,
 .viewProfile .ui-dialog-content::-webkit-scrollbar,
@@ -214,6 +220,7 @@
 .eventDialog .ui-dialog-content::-webkit-scrollbar-thumb,
 .votingDialog .ui-dialog-content::-webkit-scrollbar-thumb,
 .editEventDialog .ui-dialog-content::-webkit-scrollbar-thumb,
+.answerDialog .ui-dialog-content::-webkit-scrollbar-thumb,
 .setEventDuration .ui-dialog-content::-webkit-scrollbar-thumb,
 .editProfile .ui-dialog-content::-webkit-scrollbar-thumb,
 .viewProfile .ui-dialog-content::-webkit-scrollbar-thumb,
@@ -240,6 +247,7 @@
 .editEventDialog .ui-dialog-buttonpane,
 .setEventDuration .ui-dialog-buttonpane,
 .editProfile .ui-dialog-buttonpane,
+.answerDialog .ui-dialog-buttonpane,
 .viewProfile .ui-dialog-buttonpane,
 .errorsDialog .ui-dialog-buttonpane{
     background-color: transparent;
@@ -251,6 +259,7 @@
 .editEventDialog .ui-dialog-buttonpane .ui-dialog-buttonset,
 .setEventDuration .ui-dialog-buttonpane .ui-dialog-buttonset,
 .editProfile .ui-dialog-buttonpane .ui-dialog-buttonset,
+.answerDialog .ui-dialog-buttonpane .ui-dialog-buttonset,
 .viewProfile .ui-dialog-buttonpane .ui-dialog-buttonset,
 .errorsDialog .ui-dialog-buttonpane .ui-dialog-buttonset{
     float: none;
@@ -263,6 +272,7 @@
 .editEventDialog .ui-dialog-buttonpane button,
 .setEventDuration .ui-dialog-buttonpane button,
 .editProfile .ui-dialog-buttonpane button,
+.answerDialog .ui-dialog-buttonpane button,
 .viewProfile .ui-dialog-buttonpane button,
 .errorsDialog .ui-dialog-buttonpane button{
     cursor: pointer;
@@ -279,7 +289,8 @@
 .allbuttons{
     display: flex;
     justify-content: center;
-    margin-top: 130px;
+    position: relative;
+    top: 137px;
 }
 
 /* End shared styling between different dialogs */
@@ -380,7 +391,7 @@
     font-family: bodyFont;
     font-size: 24px;
     position: relative;
-    top: -150px;
+    top: -25px;
     margin-top: 0;
     margin-bottom: 0;
 }
@@ -437,6 +448,63 @@
 }
 
 /* End edit event dialog styling */
+
+/* Start answer dialog styling */
+
+.answerDialog .existingAnswers{
+    margin-right: 16px;
+}
+
+.answerDialog .existingAnswers .entry{
+    background-color: rgb(252,185,18);
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    margin-left: -27px
+}
+
+.answerDialog .existingAnswers .entry h3,
+.answerDialog .existingAnswers .entry p{
+    margin-left: 20px;
+}
+
+.answerDialog .existingAnswers .entry h3{
+    font-family: titleFont;
+    font-size: 32px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.answerDialog .existingAnswers .entry p{
+    font-family: bodyFont;
+    font-size: 18px;
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+.answerDialog textarea{
+    resize: none;
+    margin-left: 13px;
+    position: fixed;
+    top: 72%;
+    padding: 11px;
+    font-family: bodyFont;
+    font-size: 16px;
+    width: 328px;
+    height: 80px;
+    border-radius: 25px;
+}
+
+.answerDialog .ui-dialog-buttonpane .ui-dialog-buttonset{
+    float: right
+}
+
+.answerDialog .ui-dialog-buttonpane button{
+    width: 100px;
+    padding: 15px;
+}
+
+/* End answer dialog styling */
 
 /* Start set event duration styling */
 .setEventDuration .ui-dialog-title{
