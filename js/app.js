@@ -723,6 +723,32 @@ angular.module('myApp', [])
             }
         });
     };
+
+    $scope.getAnswers = function(eventid){
+        jQuery.ajax({
+            url: "database_function.php?function=getAnswers&eventid=" + eventid,
+            type: "GET",
+            success: function (data) {
+                $scope.displayedAnswers = JSON.parse(data);
+            }
+        });
+    };
+
+    $scope.saveAnswer = function(){
+        jQuery.ajax({
+            url: "database_function.php?function=answerQuestion",
+            data: {
+                "eventid": $scope.displayedEvent.eventid,
+                "userid": $scope.currentUserId,
+                "answertext": $scope.newAnswer //Or however the answer text will be passed
+            },
+            type: "POST",
+            success: function (data) {
+                $("#editEventDialog").dialog("close");
+                $scope.populateMarkers(null);
+            }
+        });
+    };
     
     // Validate the update email that the user enters
     function validateEmail(email){
