@@ -724,6 +724,17 @@ angular.module('myApp', [])
         });
     };
     
+    $scope.openAnswerDialog = function(){
+        $("#answerDialog").dialog("open");
+        $("#answerDialog").dialog({
+            buttons: {
+                "Submit": function(){
+                    
+                }
+            }
+        });
+    }
+    
     // Validate the update email that the user enters
     function validateEmail(email){
         var pattern = /\S+@\S+\.com|net|edu|org$/;
