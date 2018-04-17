@@ -97,10 +97,10 @@
             </div>
             
             <div class="allbuttons">
-                <button ng-if="canVote && !eventEnded" ng-click="openVoteDialog(displayedEvent.eventid)">Verify Event</button>
+                <button ng-if="canVote && !eventEnded && displayedEvent.typeid == '1'" ng-click="openVoteDialog(displayedEvent.eventid)">Verify Event</button>
                 <button ng-if="displayedEvent.userid == currentUserId" ng-click="openEditDialog()">Edit Event</button>
-                <button ng-if="displayedEvent.userid == currentUserId && canSetEndDate && canSetDuration" ng-click="openTimerDialog(displayedEvent.eventid)">Set Duration</button>
-                <button ng-if="displayedEvent.userid == currentUserId && canSetEndDate && !counterStarted && !canSetDuration" ng-click="startCountdown()">Start Event</button>
+                <button ng-if="displayedEvent.userid == currentUserId && canSetEndDate && canSetDuration && displayedEvent.typeid == '1'" ng-click="openTimerDialog(displayedEvent.eventid)">Set Duration</button>
+                <button ng-if="displayedEvent.userid == currentUserId && canSetEndDate && !counterStarted && !canSetDuration && displayedEvent.typeid == '1'" ng-click="startCountdown()">Start Event</button>
             </div>
             
             <div id="countdown">
