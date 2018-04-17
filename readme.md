@@ -70,3 +70,17 @@ For the timer to work, to new columns need to be added the events table:
 
 A new column needs to be added to the user table:
 - name -> which is a text and its default value is NULL
+
+```
+CREATE TABLE answers(
+    answerid int not null,
+    eventid int not null,
+    userid int not null,
+    answertext varchar(500),
+    primary key(answerid),
+    foreign key(userid) references user(userid),
+    foreign key(eventid) references events(eventid)
+    );
+```
+
+Change answerid to A_I
