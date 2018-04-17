@@ -190,4 +190,23 @@
         $stmt = $con->prepare("UPDATE events SET duration = NULL, endDate = NULL WHERE eventid = ?");
         $stmt->execute(array($_GET["eventId"]));
         
+    }else if($_GET['function'] == "answerQuestion"){
+
+        $stmt = $con->prepare('INSERT INTO answers (userid, eventid, answertext) VALUES (:userid, :eventid, :answertext)');
+        $stmt->execute(array(
+            ":userid" => $_SESSION["userid"],
+            ":eventid" => $_POST["eventid"],
+            ":answertext" => $_POST["answertext"]
+        ));
+
+    }else if($_GET["function"] == "getAnswers"){
+
+        $query = 'SELECT * FROM answers WHERE eventid = ' . $_POST['eventid'];
+        $stmt = $con->prepare($query);
+        $stmt->execute();
+
+        $res = $stmt->fetchAll();
+
+        echo json_encode($res);
+
     }
