@@ -740,18 +740,24 @@ angular.module('myApp', [])
         $("#answerDialog").dialog({
             buttons: {
                 "Submit": function(){
-                    jQuery.ajax({
-                        url: "database_function.php?function=answerQuestion",
-                        data: {
-                            "eventid": $scope.displayedEvent.eventid,
-                            "userid": $scope.currentUserId,
-                            "answertext": $scope.newAnswer //Or however the answer text will be passed
-                        },
-                        type: "POST",
-                        success: function (data) {
-                            $scope.getAnswers($scope.displayedEvent.eventid);
-                        }
-                    });
+                    
+                    // Check if the answer field is empty or not
+                    if($(".answerDialog textarea").val().trim() != ""){
+                        jQuery.ajax({
+                            url: "database_function.php?function=answerQuestion",
+                            data: {
+                                "eventid": $scope.displayedEvent.eventid,
+                                "userid": $scope.currentUserId,
+                                "answertext": $scope.newAnswer //Or however the answer text will be passed
+                            },
+                            type: "POST",
+                            success: function (data) {
+                                $scope.getAnswers($scope.displayedEvent.eventid);
+                            }
+                        });
+
+                        $(".answerDialog textarea").val("");
+                    }
                 }
             }
         });
