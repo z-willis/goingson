@@ -43,6 +43,7 @@
         
         <div id="mySidenav" class="sidenav">
             <a class="top" href="#" id="opener">Events</a>
+            <a class="top" href="#" id="questions">Questions</a>
             <a href="#" ng-click="viewProfile()">Profile</a>
             <a href="#" ng-click="populateMarkers(null)">Refresh</a>
             <a href="logout.php">Logout</a>
@@ -74,8 +75,17 @@
         <div id="eventsDialog" title="Events" style="display:none">
             <ul class="events">
                 <li class="entry" ng-repeat="event in events">
-                    <h3 class="title">Title: {{event.title}}</h3>
-                    <p class="text">Description: {{event.description}}</p>
+                    <h3 class="title">{{event.title}}</h3>
+                    <p class="text">{{event.description}}</p>
+                </li>
+            </ul>
+        </div>
+        
+        <div id="questionsDialog" title="Questions" style="display:none">
+            <ul class="questions">
+                <li class="entry" ng-repeat="question in questions" ng-click="viewAnswers(question.eventid)">
+                    <h3 class="title">{{question.title}}</h3>
+                    <p class="text">{{question.description}}</p>
                 </li>
             </ul>
         </div>
@@ -96,17 +106,19 @@
                 <p>Please note that the event duration can't be changed once it is set.</p>
             </div>
             
+            <div id="countdown">
+                <h5 id="finishTime"></h5>
+            </div>
+            
             <div class="allbuttons">
                 <button ng-if="canVote && !eventEnded && displayedEvent.typeid == '1'" ng-click="openVoteDialog(displayedEvent.eventid)">Verify Event</button>
-                <button ng-if="displayedEvent.userid == currentUserId" ng-click="openEditDialog()">Edit Event</button>
+                <button ng-if="displayedEvent.userid == currentUserId" ng-click="openEditDialog()">Edit</button>
                 <button ng-if="displayedEvent.userid == currentUserId && canSetEndDate && canSetDuration && displayedEvent.typeid == '1'" ng-click="openTimerDialog(displayedEvent.eventid)">Set Duration</button>
                 <button ng-if="displayedEvent.userid == currentUserId && canSetEndDate && !counterStarted && !canSetDuration && displayedEvent.typeid == '1'" ng-click="startCountdown()">Start Event</button>
                 <button ng-if="displayedEvent.typeid == '2'" ng-click="openAnswerDialog()">Answers</button>
             </div>
             
-            <div id="countdown">
-                <h5 id="finishTime"></h5>
-            </div>
+            
         </div>
         
         <div id="createEventDialog" title="Create Event" style="display:none">
@@ -124,7 +136,7 @@
             </form>
         </div>
         
-        <div id="editEventDialog" title="Edit Event" style="display:none">
+        <div id="editEventDialog" title="Edit" style="display:none">
             <form>
                 <h3>Title</h3>
                 <input type="text" ng-model="displayedEvent.title"/>
@@ -148,6 +160,10 @@
             <textarea ng-model="newAnswer"></textarea>
         </div>
         
+        <div id="noAnswersDialog" title="Answers" style="display:none">
+            <p>No answers available for this question!</p>
+        </div>
+        
         <script>
             var currentUserId = "<?php echo $_SESSION["userid"]; ?>";
             var currentUsername = "<?php echo $_SESSION["user"]; ?>";
@@ -168,6 +184,16 @@
                 $( "#eventsDialog" ).dialog({
                     dialogClass: "allEventsDialog",
                     autoOpen: false,
+                    modal: true,
+                    show: false,
+                    hide: false,
+                    height: 500,
+                    width: 500
+                });
+                $( "#questionsDialog" ).dialog({
+                    dialogClass: "allQuestionsDialog",
+                    autoOpen: false,
+                    modal: true,
                     show: false,
                     hide: false,
                     height: 500,
@@ -176,14 +202,16 @@
                 $( "#eventDialog" ).dialog({
                     dialogClass: "eventDialog",
                     autoOpen: false,
+                    modal: true,
                     show: false,
                     hide: false,
-                    height: 500,
+                    height: 450,
                     width: 500
                 });
                 $( "#createEventDialog" ).dialog({
                     dialogClass: "createDialog",
                     autoOpen: false,
+                    modal: true,
                     show: false,
                     hide: false,
                     height: 500,
@@ -203,6 +231,7 @@
                 $( "#editEventDialog" ).dialog({
                     dialogClass: "editEventDialog",
                     autoOpen: false,
+                    modal: true,
                     show: false,
                     hide: false,
                     height: 500,
@@ -211,6 +240,7 @@
                 $( "#eventTimer" ).dialog({
                     dialogClass: "setEventDuration",
                     autoOpen: false,
+                    modal: true,
                     show: false,
                     hide: false,
                     height: 500,
@@ -219,6 +249,7 @@
                 $( "#profileDialog" ).dialog({
                     dialogClass: "editProfile",
                     autoOpen: false,
+                    modal: true,
                     show: false,
                     hide: false,
                     height: 500,
@@ -227,6 +258,7 @@
                 $( "#viewProfileDialog" ).dialog({
                     dialogClass: "viewProfile",
                     autoOpen: false,
+                    modal: true,
                     show: false,
                     hide: false,
                     height: 500,
@@ -235,6 +267,7 @@
                 $( "#errorsDialog" ).dialog({
                     dialogClass: "errorsDialog",
                     autoOpen: false,
+                    modal: true,
                     show: false,
                     hide: false,
                     height: 500,
@@ -243,11 +276,23 @@
                 $( "#answerDialog" ).dialog({
                     dialogClass: "answerDialog",
                     autoOpen: false,
+                    modal: true,
+                    draggable: false,
                     show: false,
                     hide: false,
                     height: 500,
                     width: 500
                 });
+                $( "#noAnswersDialog").dialog({
+                    dialogClass: "noAnswersDialog",
+                    autoOpen: false,
+                    modal: true,
+                    draggable: false,
+                    show: false,
+                    hide: false,
+                    height: 250,
+                    width: 350
+                })
             } );
         </script>
     </body>
