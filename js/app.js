@@ -5,6 +5,7 @@ angular.module('myApp', [])
     $scope.currentUsername = currentUsername;
     $scope.displayedEvent = null;
     $scope.events = [];
+    $scope.questions = [];
     $scope.userInfo = [];
     $scope.newEventType = "Event";
     $scope.markers = [];
@@ -18,30 +19,60 @@ angular.module('myApp', [])
 
     $( "#opener" ).on( "click", function() {
         $( "#eventsDialog" ).dialog( "open" );
+        $scope.populateMarkers(null, "1");
         $( "#eventsDialog" ).dialog({
             buttons:{
                 "My Events" : function() {
-                    $scope.populateMarkers(currentUserId)
+                    $scope.populateMarkers(currentUserId, "1")
                 },
                 "All Events" : function () {
-                    $scope.populateMarkers(null)
+                    $scope.populateMarkers(null, "1")
                 }
+            },
+            
+            close: function(){
+                $scope.populateMarkers(null, null);
             }
-        })
+        });
+        
+    });
+    
+    $( "#questions" ).on( "click", function() {
+        $( "#questionsDialog" ).dialog( "open" );
+        $scope.populateMarkers(null, "2");
+        $( "#questionsDialog" ).dialog({
+            buttons:{
+                "My Questions" : function() {
+                    $scope.populateMarkers(currentUserId, "2")
+                },
+                "All Questions" : function () {
+                    $scope.populateMarkers(null, "2")
+                }
+            },
+            
+            close: function(){
+                $scope.populateMarkers(null, null);
+            }
+        });
     });
 
-    $scope.populateMarkers = function(userid){
+    $scope.populateMarkers = function(userid, type){
         $scope.clearMarkers();
+        $scope.questions = [];
         jQuery.ajax({
             url: "database_function.php?function=getEvents",
             type: "POST",
             data:{
-                "userFilter": userid
+                "userFilter": userid,
+                "type": type
             },
             success:function(data){
                 $scope.events = JSON.parse(data);
                 angular.forEach($scope.events, function (event) {
                     $scope.addMarker(event);
+                    if(event.typeid == "2"){
+                        $scope.questions.push(event);
+                    }
                 });
                 $scope.$apply();
             }
@@ -91,7 +122,7 @@ angular.module('myApp', [])
             $scope.newEventLong = e.latLng.lng();
         });
 
-        $scope.populateMarkers(null);
+        $scope.populateMarkers(null, null);
     };
 
     // Add a marker to the map
@@ -255,7 +286,7 @@ angular.module('myApp', [])
                                 if(timeDifference <= 0){
                                     $( "#finishTime" ).html("Event Ended");
                                     $scope.eventEnded = true;
-                                    $scope.populateMarkers(null);
+                                    $scope.populateMarkers(null, null);
                                     $scope.$apply();
                                     
                                 }else{ /* if the current date didn't still pass the end date of the event, calculate the remaining time and show it to          the user */
@@ -276,7 +307,7 @@ angular.module('myApp', [])
                                             clearInterval(intervalId);
                                             $( "#finishTime" ).html("Event Ended");
                                             $scope.eventEnded = true;
-                                            $scope.populateMarkers(null);
+                                            $scope.populateMarkers(null, null);
                                             $scope.$apply();
                                         }
                                         
@@ -314,7 +345,7 @@ angular.module('myApp', [])
                                 if(timeDifference <= 0){
                                     $( "#finishTime" ).html("Event Ended");
                                     $scope.eventEnded = true;
-                                    $scope.populateMarkers(null);
+                                    $scope.populateMarkers(null, null);
                                     $scope.$apply();
                                 }else{
                                     $scope.eventEnded = false;
@@ -334,7 +365,7 @@ angular.module('myApp', [])
                                             clearInterval(intervalId);
                                             $( "#finishTime" ).html("Event Ended");
                                             $scope.eventEnded = true;
-                                            $scope.populateMarkers(null);
+                                            $scope.populateMarkers(null, null);
                                             $scope.$apply();
                                         }
 
@@ -373,7 +404,7 @@ angular.module('myApp', [])
             type: "POST",
             success:function(data){
                 $( "#createEventDialog" ).dialog( "close" );
-                $scope.populateMarkers(null);
+                $scope.populateMarkers(null, null);
                 $scope.newEventTitle = "";
                 $scope.newEventDesc = "";
                 $scope.newEventType = "Event";
@@ -490,7 +521,7 @@ angular.module('myApp', [])
                         type: "POST",
                         success: function (data) {
                             $("#editEventDialog").dialog("close");
-                            $scope.populateMarkers(null);
+                            $scope.populateMarkers(null, null);
                         }
                     });
                 },
@@ -503,7 +534,7 @@ angular.module('myApp', [])
                         type: "POST",
                         success: function (data) {
                             $scope.clearMarkers();
-                            $scope.populateMarkers(null);
+                            $scope.populateMarkers(null, null);
                             $("#editEventDialog").dialog("close");
                         }
                     });
@@ -762,6 +793,37 @@ angular.module('myApp', [])
             }
         });
     };
+    
+    $scope.viewAnswers = function(eventid){
+        
+        jQuery.ajax({
+            url: "database_function.php?function=getAnswers&eventid=" + eventid,
+            type: "GET",
+            success: function (data) {
+                if(data.trim() != "[]"){
+                    $("#answerDialog").dialog("open");
+                    $scope.getAnswers(eventid);
+                    $("#answerDialog textarea").css("display", "none");
+                    $("#answerDialog").dialog({
+                        buttons: {},
+
+                        close: function(){
+                            $("#answerDialog textarea").css("display", "block");
+                        }
+                    });
+                }else{
+                    $("#noAnswersDialog").dialog("open");
+                    $("#noAnswersDialog").dialog({
+                        buttons: {
+                            "Close": function(){
+                                $("#noAnswersDialog").dialog("close");
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
     
     // Validate the update email that the user enters
     function validateEmail(email){
