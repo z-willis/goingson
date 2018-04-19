@@ -129,11 +129,13 @@
 }
 
 .allEventsDialog,
+.allQuestionsDialog,
 .createDialog,
 .eventDialog,
 .votingDialog,
 .editEventDialog,
 .answerDialog,
+.noAnswersDialog,
 .setEventDuration,
 .editProfile,
 .viewProfile,
@@ -144,11 +146,13 @@
 }
 
 .allEventsDialog .ui-dialog-content,
+.allQuestionsDialog .ui-dialog-content,
 .createDialog .ui-dialog-content,
 .eventDialog .ui-dialog-content,
 .votingDialog .ui-dialog-content,
 .editEventDialog .ui-dialog-content,
 .answerDialog .ui-dialog-content,
+.noAnswersDialog .ui-dialog-content,
 .setEventDuration .ui-dialog-content,
 .editProfile .ui-dialog-content,
 .viewProfile .ui-dialog-content,
@@ -157,11 +161,13 @@
 }
 
 .allEventsDialog .ui-dialog-titlebar,
+.allQuestionsDialog .ui-dialog-titlebar,
 .createDialog .ui-dialog-titlebar,
 .eventDialog .ui-dialog-titlebar,
 .votingDialog .ui-dialog-titlebar,
 .editEventDialog .ui-dialog-titlebar,
 .answerDialog .ui-dialog-titlebar,
+.noAnswersDialog .ui-dialog-titlebar,
 .setEventDuration .ui-dialog-titlebar,
 .editProfile .ui-dialog-titlebar,
 .viewProfile .ui-dialog-titlebar,
@@ -175,11 +181,13 @@
 }
 
 .allEventsDialog .ui-dialog-titlebar-close,
+.allQuestionsDialog .ui-dialog-titlebar-close,
 .createDialog .ui-dialog-titlebar-close,
 .eventDialog .ui-dialog-titlebar-close,
 .votingDialog .ui-dialog-titlebar-close,
 .editEventDialog .ui-dialog-titlebar-close,
 .answerDialog .ui-dialog-titlebar-close,
+.noAnswersDialog .ui-dialog-titlebar-close,
 .setEventDuration .ui-dialog-titlebar-close,
 .editProfile .ui-dialog-titlebar-close,
 .viewProfile .ui-dialog-titlebar-close,
@@ -189,11 +197,13 @@
 }
 
 .allEventsDialog .ui-dialog-title,
+.allQuestionsDialog .ui-dialog-title,
 .createDialog .ui-dialog-title,
 .eventDialog .ui-dialog-title,
 .votingDialog .ui-dialog-title,
 .editEventDialog .ui-dialog-title,
 .answerDialog .ui-dialog-title,
+.noAnswersDialog .ui-dialog-title,
 .setEventDuration .ui-dialog-title,
 .editProfile .ui-dialog-title,
 .viewProfile .ui-dialog-title,
@@ -203,11 +213,13 @@
 }
 
 .allEventsDialog .ui-dialog-content::-webkit-scrollbar,
+.allQuestionsDialog .ui-dialog-content::-webkit-scrollbar,
 .createDialog .ui-dialog-content::-webkit-scrollbar,
 .eventDialog .ui-dialog-content::-webkit-scrollbar,
 .votingDialog .ui-dialog-content::-webkit-scrollbar,
 .editEventDialog .ui-dialog-content::-webkit-scrollbar,
 .answerDialog .ui-dialog-content::-webkit-scrollbar,
+.noAnswersDialog .ui-dialog-content::-webkit-scrollbar,
 .setEventDuration .ui-dialog-content::-webkit-scrollbar,
 .editProfile .ui-dialog-content::-webkit-scrollbar,
 .viewProfile .ui-dialog-content::-webkit-scrollbar,
@@ -216,11 +228,13 @@
 }
 
 .allEventsDialog .ui-dialog-content::-webkit-scrollbar-thumb,
+.allQuestionsDialog .ui-dialog-content::-webkit-scrollbar-thumb,
 .createDialog .ui-dialog-content::-webkit-scrollbar-thumb,
 .eventDialog .ui-dialog-content::-webkit-scrollbar-thumb,
 .votingDialog .ui-dialog-content::-webkit-scrollbar-thumb,
 .editEventDialog .ui-dialog-content::-webkit-scrollbar-thumb,
 .answerDialog .ui-dialog-content::-webkit-scrollbar-thumb,
+.noAnswersDialog .ui-dialog-content::-webkit-scrollbar-thumb,
 .setEventDuration .ui-dialog-content::-webkit-scrollbar-thumb,
 .editProfile .ui-dialog-content::-webkit-scrollbar-thumb,
 .viewProfile .ui-dialog-content::-webkit-scrollbar-thumb,
@@ -243,11 +257,13 @@
 }
 
 .allEventsDialog .ui-dialog-buttonpane,
+.allQuestionsDialog .ui-dialog-buttonpane,
 .votingDialog .ui-dialog-buttonpane,
 .editEventDialog .ui-dialog-buttonpane,
 .setEventDuration .ui-dialog-buttonpane,
 .editProfile .ui-dialog-buttonpane,
 .answerDialog .ui-dialog-buttonpane,
+.noAnswersDialog .ui-dialog-buttonpane,
 .viewProfile .ui-dialog-buttonpane,
 .errorsDialog .ui-dialog-buttonpane{
     background-color: transparent;
@@ -255,11 +271,13 @@
 }
 
 .allEventsDialog .ui-dialog-buttonpane .ui-dialog-buttonset,
+.allQuestionsDialog .ui-dialog-buttonpane .ui-dialog-buttonset,
 .votingDialog .ui-dialog-buttonpane .ui-dialog-buttonset,
 .editEventDialog .ui-dialog-buttonpane .ui-dialog-buttonset,
 .setEventDuration .ui-dialog-buttonpane .ui-dialog-buttonset,
 .editProfile .ui-dialog-buttonpane .ui-dialog-buttonset,
 .answerDialog .ui-dialog-buttonpane .ui-dialog-buttonset,
+.noAnswersDialog .ui-dialog-buttonpane .ui-dialog-buttonset,
 .viewProfile .ui-dialog-buttonpane .ui-dialog-buttonset,
 .errorsDialog .ui-dialog-buttonpane .ui-dialog-buttonset{
     float: none;
@@ -267,12 +285,14 @@
 }
 
 .allEventsDialog .ui-dialog-buttonpane button,
+.allQuestionsDialog .ui-dialog-buttonpane button,
 .votingDialog .ui-dialog-buttonpane button,
 .votingDialog .ui-dialog-buttonpane button,
 .editEventDialog .ui-dialog-buttonpane button,
 .setEventDuration .ui-dialog-buttonpane button,
 .editProfile .ui-dialog-buttonpane button,
 .answerDialog .ui-dialog-buttonpane button,
+.noAnswersDialog .ui-dialog-buttonpane button,
 .viewProfile .ui-dialog-buttonpane button,
 .errorsDialog .ui-dialog-buttonpane button{
     cursor: pointer;
@@ -284,18 +304,22 @@
     font-family: titleFont;
     font-size: 20px;    
     margin-left: 22px;
+    cursor: pointer;
 }
 
 .allbuttons{
     display: flex;
     justify-content: center;
-    position: relative;
-    top: 137px;
+    align-items: center
 }
 
 /* End shared styling between different dialogs */
 
 /* Start all event dialog styling */
+
+.allEventsDialog .ui-dialog-buttonpane .ui-dialog-buttonset{
+    margin-bottom: -20px
+}
 
 .allEventsDialog .events{
     margin-top: 0;
@@ -311,6 +335,7 @@
 .allEventsDialog .entry h3,
 .allEventsDialog .entry p{
     margin-left: 20px;
+    overflow-wrap: break-word;
 }
 
 .allEventsDialog .entry h3{
@@ -333,6 +358,50 @@
 }
 
 /* End all event dialog styling */
+
+/* Start all questions dialog styling */
+
+.allQuestionsDialog .ui-dialog-buttonpane .ui-dialog-buttonset{
+    margin-bottom: -18px
+}
+
+.allQuestionsDialog .events{
+    margin-top: 0;
+}
+
+.allQuestionsDialog .entry{
+    background-color: rgb(252,185,18);
+    margin-bottom: 10px;
+    border-radius: 30px;
+    margin-left: -27px
+}
+
+.allQuestionsDialog .entry h3,
+.allQuestionsDialog .entry p{
+    margin-left: 20px;
+    overflow-wrap: break-word;
+}
+
+.allQuestionsDialog .entry h3{
+    font-family: titleFont;
+    font-size: 32px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.allQuestionsDialog .entry p{
+    font-family: bodyFont;
+    font-size: 18px;
+    margin-bottom: 2px;
+    margin-top: 0;
+}
+
+.allQuestionsDialog .ui-dialog-buttonpane button{
+    width: 150px;
+    padding: 15px;
+}
+
+/* End all questions dialog styling */
 
 /* Start create event dialog styling */
 
@@ -365,11 +434,18 @@
     min-width: 153px;
     margin: auto;
     margin-top: 50px;
+    cursor: pointer;
 }
 
 /* End create event dialog styling */
 
 /* Start event dialog styling */
+
+.eventDialog .ui-dialog-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
 .eventDialog h3{
     color: rgb(252,185,18);
@@ -384,6 +460,7 @@
     font-size: 24px;
     margin-bottom: 24px;
     margin-top: 0;
+    overflow-wrap: break-word;
 }
 
 #finishTime{
@@ -392,8 +469,8 @@
     font-size: 24px;
     position: relative;
     top: -25px;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .eventDialog button:not(.ui-button){
@@ -506,6 +583,26 @@
 
 /* End answer dialog styling */
 
+/* Start no answers dialog styling */
+
+.noAnswersDialog .ui-dialog-content{
+    padding-top: 10px
+}
+
+.noAnswersDialog .ui-dialog-buttonpane .ui-dialog-buttonset{
+    margin-bottom: -23px;
+}
+
+.noAnswersDialog p{
+    color: rgb(252,185,18);
+    font-family: bodyFont;
+    font-size: 22px;
+    margin: 0;
+    text-align: center;
+}
+
+/* End no answers dialog styling */
+
 /* Start set event duration styling */
 .setEventDuration .ui-dialog-title{
     font-size: 40px;
@@ -617,27 +714,20 @@
     .sidenav a {font-size: 18px;}
 }
 
-.events {
+.events,
+.questions{
     list-style-type: none;
 }
 
-.events .img {
-    float: left;
-    margin: 0 15px 0 0;
-}
-
-.events .text {
-    font: 200 12px/1.5 Georgia, Times New Roman, serif;
-}
-
-.events .entry {
+.events .entry,
+.questions .entry{
     padding: 10px;
     overflow: auto;
 }
 
-.events .entry:hover {
+.events .entry:hover,
+.questions .entry:hover{
     background: #eee;
-    cursor: pointer;
 }
 
 /* Map styling */
