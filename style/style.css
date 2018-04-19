@@ -35,6 +35,10 @@
     padding-bottom: 0;
 }
 
+.top-nav-bar .tab-right img:hover {
+    background-color: #342d59;
+}
+
 .legend{
     display: none;
     background-color: #421D56;
