@@ -91,7 +91,7 @@
         </div>
         
         <div id="eventDialog" title="Details" style="display:none">
-            <h3>Title</h3>
+            <h3>{{displayedEvent.typeString}}</h3>
             <p>{{displayedEvent.title}}</p>
             <h3>Description</h3>
             <p>{{displayedEvent.description}}</p>
@@ -119,8 +119,8 @@
                 <button ng-if="displayedEvent.userid == currentUserId && canSetEndDate && !counterStarted && !canSetDuration && displayedEvent.typeid == '1'" ng-click="startCountdown()">Start Event</button>
                 <button ng-if="displayedEvent.typeid == '2'" ng-click="openAnswerDialog()">Answers</button>
             </div>
-            
-            
+
+
         </div>
         
         <div id="createEventDialog" title="Create Event" style="display:none">
