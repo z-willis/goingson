@@ -95,6 +95,8 @@
             <p>{{displayedEvent.title}}</p>
             <h3>Description</h3>
             <p>{{displayedEvent.description}}</p>
+            <h3>Creator</h3>
+            <p>{{displayedEvent.username}}</p>
             <div id="votingDialog" title="Verify Event">
                 <p>Is this event happening?</p>
             </div>

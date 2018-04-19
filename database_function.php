@@ -43,7 +43,7 @@
         
     }else if($_GET['function'] == "getEvent"){ // when we want to get a specific event
         
-        $stmt = $con->prepare('SELECT * FROM events WHERE eventid = ?');
+        $stmt = $con->prepare('SELECT events.*, user.username FROM events JOIN user ON events.userid = user.userid WHERE eventid = ?');
         $stmt->execute(array($_GET["eventId"]));
 
         $res = $stmt->fetch();
