@@ -396,6 +396,25 @@
     margin-top: 0;
 }
 
+.allQuestionsDialog .entry button:not(.ui-button){
+    position: relative;
+    left: 324px;
+    border-radius: 22px;
+    border: none;
+    background-color: rgb(66,29,86);
+    color: rgb(252,185,18);
+    cursor: pointer;
+    font-family: titleFont;
+    font-size: 22px;
+    padding: 10px;
+    margin-top: 8px;
+    box-shadow: 2px 2px 2px #3f083f;
+}
+
+.allQuestionsDialog .entry button:not(.ui-button):hover{
+    background: rgb(60, 4, 90);
+}
+
 .allQuestionsDialog .ui-dialog-buttonpane button{
     width: 150px;
     padding: 15px;
@@ -725,10 +744,13 @@
     overflow: auto;
 }
 
-.events .entry:hover,
-.questions .entry:hover{
+/*.events .entry:hover{
     background: #eee;
-}
+}*/
+
+/*.questions .entry:hover{
+    background: rgb(251, 195, 59);;
+}*/
 
 /* Map styling */
 html, body {
