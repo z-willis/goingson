@@ -64,8 +64,9 @@
 
         <div id="viewProfileDialog" title="Profile" style="display:none">
             <img src="images/default.png">
-            <h1>{{userInfo.name}} - {{userInfo.username}}</h1>
+            <h1><span ng-if="userInfo.name">{{userInfo.name}} - </span>{{userInfo.username}}</h1>
             <h3>{{userInfo.email}}</h3>
+            <h3>{{userInfo.verifiedeventcount}} verified events</h3>
         </div>
         
         <div id="errorsDialog" title="Update Errors"></div>
@@ -93,11 +94,11 @@
         
         <div id="eventDialog" title="Details" style="display:none">
             <h3>{{displayedEvent.typeString}}</h3>
-            <p>{{displayedEvent.title}}</p>
+            <p>{{displayedEvent.title}}<span ng-if="displayedEvent.verified == '1'"> - Verified</span></p>
             <h3>Description</h3>
             <p>{{displayedEvent.description}}</p>
             <h3>Creator</h3>
-            <p>{{displayedEvent.username}}</p>
+            <p>{{displayedEvent.username}} - {{displayedEvent.verifiedeventcount}} verified events</p>
             <div id="votingDialog" title="Verify Event">
                 <p>Is this event happening?</p>
             </div>
