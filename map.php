@@ -83,9 +83,10 @@
         
         <div id="questionsDialog" title="Questions" style="display:none">
             <ul class="questions">
-                <li class="entry" ng-repeat="question in questions" ng-click="viewAnswers(question.eventid)">
+                <li class="entry" ng-repeat="question in questions">
                     <h3 class="title">{{question.title}}</h3>
                     <p class="text">{{question.description}}</p>
+                    <button ng-click="viewAnswers(question.eventid)">Answers</button>
                 </li>
             </ul>
         </div>
