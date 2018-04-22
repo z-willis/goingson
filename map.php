@@ -94,7 +94,7 @@
         
         <div id="eventDialog" title="Details" style="display:none">
             <h3>{{displayedEvent.typeString}}</h3>
-            <p>{{displayedEvent.title}}<image ng-if="displayedEvent.verified == '1'" src="images/verified.png" title="Verified!"></image></p>
+            <p>{{displayedEvent.title}} <img ng-if="displayedEvent.verified == '1'" src="images/verified.png" title="Verified!"></p>
             <h3>Description</h3>
             <p>{{displayedEvent.description}}</p>
             <h3>Creator</h3>

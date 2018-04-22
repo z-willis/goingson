@@ -136,7 +136,7 @@
     <body class="all">
         <section class="main">
             <h1 class="title">GoingZ On</h1>
-            <p class="body">GoingZ On is an app that deserves a better description, but I'm not creative enough to make one.</p>
+            <p class="body">GoingZ On is Google Maps-based web app that allows users to view events and ask/answer questions about their surroundings.</p>
 
             <div class="options">
                 <h2 class="login">Login</h2>
