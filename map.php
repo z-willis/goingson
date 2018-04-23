@@ -48,7 +48,7 @@
             <a class="top" href="#" id="opener">Events</a>
             <a class="top" href="#" id="questions">Questions</a>
             <a href="#" ng-click="viewProfile()">Profile</a>
-            <a href="#" ng-click="populateMarkers(null)">Refresh</a>
+            <a href="#" ng-click="populateMarkers(null, null)">Refresh</a>
             <a href="logout.php">Logout</a>
         </div>
         
