@@ -448,6 +448,7 @@ angular.module('myApp', [])
                         success:function(data){
                             $scope.canVote = false;
                             $scope.$apply();
+                            $scope.getEvent(eventId);
                             $( "#votingDialog" ).dialog( "close" );
                         }
                     })
