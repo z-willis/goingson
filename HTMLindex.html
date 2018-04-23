@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>GoingZ On - Login</title>
+        <link rel="stylesheet" href="style/normalize.css">
+        <link rel="stylesheet" href="style/form.css">
+    </head>
+    <body class="all">
+        <section class="main">
+            <h1 class="title">GoingZ On</h1>
+            <p class="body">GoingZ On is Google Maps-based web app that allows users to view events and ask/answer questions about their surroundings.</p>
+
+            <div class="options">
+                <h2 class="login">Login</h2>
+                <h2 class="blocker"> | </h2>
+                <h2 class="create-account">Sign Up</h2>
+            </div>
+            <section class="container">
+                
+                <!-- Start login form -->
+                <form class="login-form"  method="POST" >
+                    <div class="user-input">
+                        <input class="input" type="text" name="username" placeholder="Username" autocomplete="off">
+                    </div>
+                    <div class="user-pass">
+                        <input type="password" name="password" placeholder="Password" autocomplete="new-password">
+                    </div>
+                    <input type="submit" value="Login" name="account" disabled>
+                    <p class="errors"></p>
+                    <p class="success"></p>
+                </form>
+                <!-- End login form -->
+                
+                <!-- Start create account form -->
+                <form class="create-account-form " method="POST">
+                    <div class="user-input">
+                        <input type="text" name="username" placeholder="Username" autocomplete="off">
+                        <p class="temporary">Username length must be more than 4 characters</p>
+                        <p class="availability"></p>
+                    </div>
+                    <div class="user-pass">
+                        <input type="password" name="password" placeholder="Password" autocomplete="new-password">
+                        <p class="temporary">Password length must be more than 4 characters</p>
+                    </div>
+                    <div class="rep-pass">
+                        <input type="password" name="repeat-password" placeholder="Re-enter password" autocomplete="new-password">
+                        <p class="temporary"></p>
+                    </div>
+                    <div class="user-email">
+                        <input type="text" name="email" placeholder="Email" autocomplete="off">
+                        <p class="temporary">Please enter a valid email</p>
+                    </div>
+                    <input type="submit" value="Create Account" name="account" disabled>
+                </form>
+                <!-- End create account form -->
+            </section>
+        </section>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="js/form.js"></script>
+        <!--<script src="js/oldform.js"></script>-->
+    </body>
+</html>
