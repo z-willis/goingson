@@ -9,8 +9,9 @@
 ?>
 
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html ng-app="myApp" lang="en">
     <head>
+        <meta charset="utf-8">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link type='text/css' rel='stylesheet' href='style/style.css'/>
         <link type='text/css' rel='stylesheet' href='style/normalize.css'/>
@@ -23,21 +24,23 @@
         <script src="js/app.js"></script>
     </head>
     <body ng-controller="baseCtrl">
-        <ul class="top-nav-bar" ng>
+        <ul class="top-nav-bar">
             <li class="tab-left">
-                <span onclick="toggleNav()"><a><image class="drawer" src="images/drawer.png"></image></a></span>
+                <span onclick="toggleNav()"><img class="drawer" src="images/drawer.png" alt="Drawer"></span>
             </li>
             <li class="tab-middle">
                 <h1>GoingZ On</h1>
             </li>
             <li class="tab-right">
-                <image src="images/legend.png"></image>
+                <img src="images/legend.png" alt="Legend">
             </li>
         </ul>
         
         <dl class="legend">
-            <dt><img src="images/markerPurple.png" /><span> Event</span></dt>
-            <dt><img src="images/markerYellow.png" /><span> Question</span></dt>
+            <dt><img src="images/markerPurple.png" alt="Purple Marker"/><span> Event</span></dt>
+            <dd></dd>
+            <dt><img src="images/markerYellow.png" alt="Yellow Marker"/><span> Question</span></dt>
+            <dd></dd>
         </dl>
         
         
@@ -63,9 +66,10 @@
         </div>
 
         <div id="viewProfileDialog" title="Profile" style="display:none">
-            <img src="images/default.png">
-            <h1>{{userInfo.name}} - {{userInfo.username}}</h1>
+            <img src="images/default.png" alt="Profile Picture">
+            <h1><span ng-if="userInfo.name">{{userInfo.name}} - </span>{{userInfo.username}}</h1>
             <h3>{{userInfo.email}}</h3>
+            <h3>{{userInfo.verifiedeventcount}} verified events</h3>
         </div>
         
         <div id="errorsDialog" title="Update Errors"></div>
@@ -92,10 +96,12 @@
         </div>
         
         <div id="eventDialog" title="Details" style="display:none">
-            <h3>Title</h3>
-            <p>{{displayedEvent.title}}</p>
+            <h3>{{displayedEvent.typeString}}</h3>
+            <p>{{displayedEvent.title}} <img ng-if="displayedEvent.verified == '1'" src="images/verified.png" title="Verified!" alt="Verified"></p>
             <h3>Description</h3>
             <p>{{displayedEvent.description}}</p>
+            <h3>Creator</h3>
+            <p>{{displayedEvent.username}} - {{displayedEvent.verifiedeventcount}} verified events</p>
             <div id="votingDialog" title="Verify Event">
                 <p>Is this event happening?</p>
             </div>
@@ -118,8 +124,8 @@
                 <button ng-if="displayedEvent.userid == currentUserId && canSetEndDate && !counterStarted && !canSetDuration && displayedEvent.typeid == '1'" ng-click="startCountdown()">Start Event</button>
                 <button ng-if="displayedEvent.typeid == '2'" ng-click="openAnswerDialog()">Answers</button>
             </div>
-            
-            
+
+
         </div>
         
         <div id="createEventDialog" title="Create Event" style="display:none">
@@ -129,7 +135,7 @@
                 <h3>Description</h3>
                 <textarea rows="5" ng-model="newEventDesc"></textarea>
                 <h3>Type</h3>
-                <select value="Event" ng-model="newEventType">
+                <select ng-model="newEventType">
                     <option value="Event">Event</option>
                     <option value="Question">Question</option>
                 </select>
@@ -144,7 +150,7 @@
                 <h3>Description</h3>
                 <textarea rows="5" ng-model="displayedEvent.description"></textarea>
                 <h3>Type</h3>
-                <select id="types" value="Event" ng-model="displayedEvent.typeString">
+                <select id="types" ng-model="displayedEvent.typeString">
                     <option value="Event">Event</option>
                     <option value="Question">Question</option>
                 </select>

@@ -84,3 +84,8 @@ CREATE TABLE answers(
 ```
 
 Change answerid to A_I
+
+```
+alter table user add verifiedeventcount int DEFAULT 0;
+alter table events add verified boolean default false;
+```

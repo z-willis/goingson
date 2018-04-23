@@ -43,7 +43,7 @@
         
     }else if($_GET['function'] == "getEvent"){ // when we want to get a specific event
         
-        $stmt = $con->prepare('SELECT * FROM events WHERE eventid = ?');
+        $stmt = $con->prepare('SELECT events.*, user.username, user.verifiedeventcount FROM events JOIN user ON events.userid = user.userid WHERE eventid = ?');
         $stmt->execute(array($_GET["eventId"]));
 
         $res = $stmt->fetch();
@@ -60,17 +60,23 @@
         
     }else if($_GET['function'] == "incVote"){ // increasing the voting of a specific event
         
-        $stmt = $con->prepare("SELECT votes FROM events WHERE eventid = ?");
+        $stmt = $con->prepare("SELECT votes, userid, verified FROM events WHERE eventid = ?");
         $stmt->execute(array($_GET["id"]));
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         $count = $stmt->rowCount();
 
         if($count > 0){
             $votes = $row[votes];
+            $userid = $row[userid];
+            $verified = $row[verified];
             $votes++;
         }
 
-        $stmt = $con->prepare("UPDATE events SET votes = ? WHERE eventid = ?");
+        if($votes >= 5 && !$verified){
+            $stmt = $con->prepare("UPDATE events SET votes = ?, verified = true WHERE eventid = ?");
+        } else {
+            $stmt = $con->prepare("UPDATE events SET votes = ? WHERE eventid = ?");
+        }
         $stmt->execute(array($votes, $_GET["id"]));
 
         $stmt = $con->prepare("INSERT INTO voting (userid, eventid) VALUES (:userid, :eventid)");
@@ -78,6 +84,21 @@
             ":userid" => $_SESSION["userid"],
             ":eventid" => $_GET["id"]
         ));
+
+        if($votes >= 5 && !$verified){
+            $stmt = $con->prepare("SELECT verifiedeventcount from user where userid = ?");
+            $stmt->execute(array($userid));
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $count = $stmt->rowCount();
+
+            if($count > 0){
+                $verifiedeventcount = $row[verifiedeventcount];
+                $verifiedeventcount++;
+            }
+
+            $stmt = $con->prepare("UPDATE user SET verifiedeventcount = ? WHERE userid = ?");
+            $stmt->execute(array($verifiedeventcount, $userid));
+        }
         
     }else if($_GET['function'] == "decVote"){ // decreasing the votes of a specific event
         
