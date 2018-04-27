@@ -34,7 +34,7 @@ $(document).ready(function(){
     
     $(".create-account").click(function(){
         $(".main").animate({
-            height: "580px"
+            height: "524px"
         },600);
         createAccountForm.siblings().css("display", "none");
         createAccountForm.fadeIn(1500);

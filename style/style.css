@@ -402,7 +402,7 @@
 
 .allQuestionsDialog .entry button:not(.ui-button){
     position: relative;
-    left: 324px;
+    left: 343px;
     border-radius: 22px;
     border: none;
     background-color: rgb(66,29,86);
@@ -586,7 +586,7 @@
     resize: none;
     margin-left: 13px;
     position: fixed;
-    top: 72%;
+    top: 75%;
     padding: 11px;
     font-family: bodyFont;
     font-size: 16px;
@@ -696,7 +696,8 @@
 }
 
 .viewProfile h3{
-    font-size: 20px;
+    font-size: 28px;
+    font-family: bodyFont;
 }
 
 .viewProfile img{
